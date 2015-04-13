@@ -1,0 +1,484 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>使用程序修改系统(IE)代理设置 | Benqy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="骑兵程序员">
+    
+
+    
+    <meta name="description" content="这是本人在做的一个前端开发调试工具(HttpMock),功能是web服务器+http日记+http代理(类似fiddler),其中的代理功能,需要在web服务启动时,自动去设置各浏览器的代理设置.
+我原先是通过写注册表的方式去实现,实现方法很简单,写一个注册表文件,启动的时候自动运行一下这个注册表文件就可以.  
+修改代理的注册表文件的内容,proxy.reg:1234[HKEY_CURRENT_">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用程序修改系统(IE)代理设置">
+<meta property="og:url" content="http://benqy.github.io/blog-server/2015/04/13/ie-proxy-setting/index.html">
+<meta property="og:site_name" content="Benqy">
+<meta property="og:description" content="这是本人在做的一个前端开发调试工具(HttpMock),功能是web服务器+http日记+http代理(类似fiddler),其中的代理功能,需要在web服务启动时,自动去设置各浏览器的代理设置.
+我原先是通过写注册表的方式去实现,实现方法很简单,写一个注册表文件,启动的时候自动运行一下这个注册表文件就可以.  
+修改代理的注册表文件的内容,proxy.reg:1234[HKEY_CURRENT_">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用程序修改系统(IE)代理设置">
+<meta name="twitter:description" content="这是本人在做的一个前端开发调试工具(HttpMock),功能是web服务器+http日记+http代理(类似fiddler),其中的代理功能,需要在web服务启动时,自动去设置各浏览器的代理设置.
+我原先是通过写注册表的方式去实现,实现方法很简单,写一个注册表文件,启动的时候自动运行一下这个注册表文件就可以.  
+修改代理的注册表文件的内容,proxy.reg:1234[HKEY_CURRENT_">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Benqy" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/blog-server/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/blog-server/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/blog-server/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/blog-server/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/blog-server/"><img src="/blog-server/img/logo.png" alt="Benqy" title="Benqy"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/blog-server/" title="Benqy">Benqy</a></h1>
+				<h2 class="blog-motto">骑兵程序员</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/blog-server/">博客</a></li>
+					
+						<li><a href="/blog-server/archives">归档</a></li>
+					
+						<li><a href="/blog-server/">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:benqy.github.io/blog-server">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/blog-server/2015/04/13/ie-proxy-setting/" title="使用程序修改系统(IE)代理设置" itemprop="url">使用程序修改系统(IE)代理设置</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="http://benqy.github.io/blog-server/about" title="骑兵程序员" target="_blank" itemprop="author">骑兵程序员</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-13T09:41:01.000Z" itemprop="datePublished"> 发表于 2015-04-13</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			
+		
+		</div>
+		
+		<p>这是本人在做的一个前端开发调试工具(<a href="https://github.com/benqy/Gungnir" target="_blank" rel="external">HttpMock</a>),功能是web服务器+http日记+http代理(类似fiddler),其中的代理功能,需要在web服务启动时,自动去设置各浏览器的代理设置.</p>
+<p>我原先是通过写注册表的方式去实现,实现方法很简单,写一个注册表文件,启动的时候自动运行一下这个注册表文件就可以.  </p>
+<p>修改代理的注册表文件的内容,<strong>proxy.reg</strong>:<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings]  </span><br><span class="line"><span class="string">"MigrateProxy"</span>=<span class="string">dword:</span><span class="number">00000001</span>  </span><br><span class="line"><span class="string">"ProxyEnable"</span>=<span class="string">dword:</span><span class="number">00000001</span>  </span><br><span class="line"><span class="string">"ProxyServer"</span>=<span class="string">"http=127.0.0.1:17173"</span></span><br></pre></td></tr></table></figure></p>
+<p>类似的,取消代理的注册表文件,<strong>disproxy.reg</strong>:<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings]</span><br><span class="line"><span class="string">"MigrateProxy"</span>=<span class="string">dword:</span><span class="number">00000001</span></span><br><span class="line"><span class="string">"ProxyEnable"</span>=<span class="string">dword:</span><span class="number">00000000</span></span><br><span class="line"><span class="string">"ProxyServer"</span>=<span class="string">""</span></span><br></pre></td></tr></table></figure></p>
+<p>这个方式非常的简单,但是存在一个严重的问题,就是修改完注册表之后,如果不重启ie,代理设置不会马上生效(这样做出来的软件,实在太山寨,简直没法用啊,什么烂软件). </p>
+<p>后来,发现fiddler是用<strong>wininet</strong>这个工具来设置ie代理.因此,google了一番之后,找到了wininet.dll这个东西,然后用.NET写了个简单的命令行工具.功能很简单,直接上代码:  </p>
+<p><strong>ProxyManager.cs</strong><br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> System.Runtime.InteropServices;</span><br><span class="line"><span class="keyword">using</span> Microsoft.Win32;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">proxysetting</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ProxyManager</span></span><br><span class="line">    &#123;</span><br><span class="line">        [DllImport(<span class="string">"wininet.dll"</span>, SetLastError = <span class="keyword">true</span>)]</span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">extern</span> <span class="keyword">bool</span> <span class="title">InternetSetOption</span><span class="params">(IntPtr hInternet, <span class="keyword">int</span> dwOption, IntPtr lPBuffer, <span class="keyword">int</span> lpdwBufferLength)</span></span>;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">const</span> <span class="keyword">int</span> INTERNET_OPTION_REFRESH = <span class="number">0x000025</span>;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">const</span> <span class="keyword">int</span> INTERNET_OPTION_SETTINGS_CHANGED = <span class="number">0x000027</span>;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">const</span> <span class="keyword">string</span> regeditKey = <span class="string">"Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings"</span>;</span><br><span class="line">        <span class="keyword">private</span> List&lt;<span class="keyword">string</span>&gt; proxyLibs = <span class="keyword">new</span> List&lt;<span class="keyword">string</span>&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Reflush</span><span class="params">()</span></span><br><span class="line">        </span>&#123;</span><br><span class="line">            InternetSetOption(IntPtr.Zero, INTERNET_OPTION_SETTINGS_CHANGED, IntPtr.Zero, <span class="number">0</span>);</span><br><span class="line">            InternetSetOption(IntPtr.Zero, INTERNET_OPTION_REFRESH, IntPtr.Zero, <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Add</span><span class="params">(<span class="keyword">string</span> server)</span></span><br><span class="line">        </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.proxyLibs.Add(server);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Run</span><span class="params">()</span></span><br><span class="line">        </span>&#123;</span><br><span class="line">            RegistryKey key = Registry.CurrentUser.OpenSubKey(regeditKey, <span class="keyword">true</span>);</span><br><span class="line">            key.SetValue(<span class="string">"ProxyServer"</span>, String.Join(<span class="string">";"</span>, <span class="keyword">this</span>.proxyLibs.ToArray()));</span><br><span class="line">            key.SetValue(<span class="string">"ProxyEnable"</span>, <span class="number">1</span>);</span><br><span class="line">            key.Close();</span><br><span class="line">            <span class="keyword">this</span>.Reflush();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Stop</span><span class="params">()</span></span><br><span class="line">        </span>&#123;</span><br><span class="line">            RegistryKey key = Registry.CurrentUser.OpenSubKey(regeditKey, <span class="keyword">true</span>);</span><br><span class="line">            key.SetValue(<span class="string">"ProxyEnable"</span>, <span class="number">0</span>);</span><br><span class="line">            key.Close();</span><br><span class="line">            <span class="keyword">this</span>.Reflush();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>ProxyManager类简单的封装wininet.dll的代理设置接口,和使用注册表文件的区别在于<strong>this.Reflush()</strong>这个方法,强制刷新代理设置,这样就不用重启IE了.  </p>
+<p>然后是在Main函数里调用:  </p>
+<p><strong>Program.cs</strong><br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">proxysetting</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span><span class="params">(<span class="keyword">string</span>[] args)</span></span><br><span class="line">        </span>&#123;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">var</span> pm = <span class="keyword">new</span> ProxyManager();</span><br><span class="line">            <span class="keyword">if</span> (args.Length &lt; <span class="number">1</span>) <span class="keyword">return</span>;</span><br><span class="line">            <span class="keyword">if</span> (args[<span class="number">0</span>] == <span class="string">"stop"</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                pm.Stop();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; args.Length; i++)</span><br><span class="line">                &#123;</span><br><span class="line">                    pm.Add(args[i]);</span><br><span class="line">                &#125;</span><br><span class="line">                pm.Run();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>通过命令行参数来设置代理,可以用空格来设置多个协议的代理,如下:</p>
+<p>设置http和https代理,代理ip为127.0.0.1,端口号17173<br><strong>proxysetting http=127.0.0.1:17173 https=127.0.0.1:17173</strong><br>nodejs中调用:</p>
+<pre><code>exports.setProxy = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{
+<span class="keyword">var</span> exec = <span class="built_in">require</span>(<span class="string">"child_process"</span>).exec;
+exec(__dirname + <span class="string">'proxysetting http=127.0.0.1:17173 https=127.0.0.1:17173'</span>);
+};
+</code></pre><p>取消代理<br><strong>proxysetting stop</strong><br>nodejs中调用:</p>
+<pre><code>exports.disProxy = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{
+<span class="keyword">var</span> exec = <span class="built_in">require</span>(<span class="string">"child_process"</span>).exec;
+exec(__dirname + <span class="string">'proxysetting stop'</span>);
+};
+</code></pre><p>打包好的exe文件:<a href="http://pan.baidu.com/s/1pJjuNG3" target="_blank" rel="external">proxysetting</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/blog-server/categories/工具/">工具</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/blog-server/tags/Gungnir/">Gungnir</a><a href="/blog-server/tags/代理/">代理</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://benqy.github.io/blog-server/2015/04/13/ie-proxy-setting/" data-title="使用程序修改系统(IE)代理设置 | Benqy" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/blog-server/2015/04/13/as3-javascript/" title="javascript与as3交互">
+  <strong>上一篇：</strong><br/>
+  <span>
+  javascript与as3交互</span>
+</a>
+</div>
+
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/04/13/ie-proxy-setting/" data-title="使用程序修改系统(IE)代理设置" data-url="http://benqy.github.io/blog-server/2015/04/13/ie-proxy-setting/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/blog-server/categories/其他/" title="其他">其他<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/blog-server/categories/前端/" title="前端">前端<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/blog-server/categories/工具/" title="工具">工具<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/blog-server/tags/javascript/" title="javascript">javascript<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/blog-server/tags/as3/" title="as3">as3<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/blog-server/tags/代理/" title="代理">代理<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/blog-server/tags/Gungnir/" title="Gungnir">Gungnir<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/blog-server/tags/github/" title="github">github<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/blog-server/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://github.com/benqy" target="_blank" title="github">github</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> zhongwen xie zheli buhao kan. <br/>
+			suibian xiedian bi shang yitiao chang de.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="http://benqy.github.io/blog-server/about" target="_blank" title="骑兵程序员">骑兵程序员</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/blog-server/js/jquery-2.0.3.min.js"></script>
+<script src="/blog-server/js/jquery.imagesloaded.min.js"></script>
+<script src="/blog-server/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"benqy"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/blog-server/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/blog-server/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/blog-server/img/scrollup.png"/></a>
+	</div>
+	<script src="/blog-server/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
