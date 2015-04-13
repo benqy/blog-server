@@ -1,13 +1,13 @@
 # Hexo Configuration
 ## Docs: http://hexo.io/docs/configuration.html
-## Source: https://github.com/hexojs/hexo/
+## Source: https://github.com/hexojs/hexo/ 
 
 # Site
-title: Hexo
-subtitle:
-description:
-author: John Doe
-language:
+title: Benqy
+subtitle: 骑兵程序员
+description: 随笔
+author: 骑兵程序员
+language: zh-CN
 timezone:
 
 # URL
@@ -62,7 +62,9 @@ pagination_dir: page
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
-theme: landscape
+theme: jacman
+stylus:
+  compress: true
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
