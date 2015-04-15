@@ -106,7 +106,7 @@ deploy:
 ```
 npm install hexo-deployer-git --save
 ```
-接下来运行命令生成静态站点并发布的命令
+接下来运行生成静态站点并发布的命令
 ```
 hexo deploy --generate
 ```
