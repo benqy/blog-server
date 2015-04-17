@@ -75,359 +75,86 @@
     <div id="container">
       <div id="main">
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/04/16/gungnir-01/" title="前端调试工具:Gungnir" itemprop="url">前端调试工具:Gungnir</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="hmj.name/about" title="骑兵程序员" target="_blank" itemprop="author">骑兵程序员</a>
-		
-  <p class="article-time">
-    <time datetime="2015-04-16T01:58:32.000Z" itemprop="datePublished"> 发表于 2015-04-16</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>作为一个前端,特别是负责广告脚本开发的,经常接到需求:”xxx页面广告出不来/xx页面有脚本错误,赶紧帮忙看下”.这时候就得把页面内容下载到本地,打开fiddler,然后配置好代理,再用编辑器打开调试.</p>
-<p>天天遇到这种事情的话,就会觉得fiddler的这些操作还不够简单.而且fiddler也不能把代理设置按项目分类,都是堆在一起,不能有效的分类存储代理设置以备下次使用.</p>
-<p>诸如此类的问题,加上刚好在学习angularjs和node-webkit,于是就花时间做了一个类似fiddler的小工具,不求功能比fiddler强,只求更方便自己使用,并且在未来可以尝试.</p>
-<p>刚开始做的那段时间刚好在看北欧神话,于是就拿奥丁的永恒之枪当名字,寓意找bug百发百中.</p>
-<h3 id="界面介绍">界面介绍</h3><p><img src="http://oneaboveall.qiniudn.com/v8ua2xeq6gktktyemg0fzsz9qk.png" alt=""></p>
-<p>顶部是不同的功能面板开关,目前只有NETWORK面板,HOST和SETTING还没做好,暂时屏蔽.</p>
-<p>右上是检查更新.</p>
-<p>左边是项目资源管理以及工具条,工具条按钮功能分别为:<code>打开项目</code>,<code>运行服务器</code>,<code>新增代理</code>,<code>打开控制台</code>,<code>刷新项目</code>,<code>保存(ctrl+s)</code>.右键点击选中的条目会出现快捷菜单.底部蓝色横条会显示一些操作提示信息.</p>
-<p>右侧大面板是文本编辑器</p>
-<h3 id="项目资源管理界面">项目资源管理界面</h3><p>项目按文件夹来划分,同一时间只能打开一个项目.可以通过将文件夹拖动到软件窗口,或者通过工具条的打开项目按钮来选择要打开的项目目录.</p>
-<p>项目的根目录会默认生成一个zproject.json文件,用来保存代理配置等一些项目设置,这样你每次打开该文件夹都会还原上次的工作状态.</p>
-<p>项目项的右键菜单包含了一些常用的功能.其中<code>预览页面</code>会有两种情况,如果该项或该项的父目录被设置了代理,则会通过代理的地址打开,否则使用本地地址打开文件.</p>
-<h3 id="文本编辑器功能">文本编辑器功能</h3><p>Gunnir集成了前端开发常用的语言的文本编辑器功能(使用开源的编辑器codemirror),目前我的开发都已经使用自己做的这个工具作为IDE了,因为这样很多功能都可以按自己的需要去改造.<br>目前支持的语言列表:<code>html</code>,<code>js</code>,<code>css</code>,<code>sass</code>,<code>php</code>,<code>coffeescript</code>,<code>markdown</code>,<code>aspx</code></p>
-<p>其中对js的支持功能会多一些,包括语法提示,jshint等</p>
-<p><img src="http://oneaboveall.qiniudn.com/v20z3wq47abjf6o1qp5nstwgbv.png" alt=""><br>光标移动到当前标识符并按ctrl+i会显示注释</p>
-<p><img src="http://oneaboveall.qiniudn.com/ii8izuv36wr60skp5zqjg67gmn.png" alt=""><br>自动列出成员列表</p>
-<p>一些常用的快捷键功能说明:<br><code>CTRL+W</code> 关闭当前文件<br><code>CTRL+TAB</code> 切换到下个文件<br><code>CTRL+K</code> 注释选中代码<br><code>CTRL+N</code> 取消注释<br><code>CTRL+L</code> 跳转到指定行<br><code>CTRL+F</code> 搜索<br><code>CTRL+G</code> 跳转到下个搜索结果<br><code>CTRL+M</code> 格式化代码<br><code>ALT+.</code> 跳转到定义</p>
-<h3 id="代理功能">代理功能</h3><p>为了尽可能的简化操作,代理的创建方式可以有多种,选择哪种取决于你的应用场景.</p>
-<h4 id="自动下载线上文件">自动下载线上文件</h4><h4 id="使用本地已有文件">使用本地已有文件</h4><p>4</p>
-<h4 id="代理整个目录">代理整个目录</h4><p>5</p>
-<h4 id="执行文件内容后返回结果">执行文件内容后返回结果</h4><h3 id="NETWORK面板">NETWORK面板</h3><h3 id="下载地址">下载地址</h3><p><a href="https://github.com/benqy/Gungnir" target="_blank" rel="external">https://github.com/benqy/Gungnir</a></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
   
-  <span></span> <a href="/tags/Gungnir/">Gungnir</a><a href="/tags/前端/">前端</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/04/16/gungnir-01/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/04/16/gungnir-01/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/04/13/github-hexo-blog/" title="使用hexo在github上搭建个人博客" itemprop="url">使用hexo在github上搭建个人博客</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="hmj.name/about" title="骑兵程序员" target="_blank" itemprop="author">骑兵程序员</a>
-		
-  <p class="article-time">
-    <time datetime="2015-04-13T10:35:31.000Z" itemprop="datePublished"> 发表于 2015-04-13</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>此教程适合我这种虽然在用github,却不懂git命令的文盲.</p>
-<h3 id="建立博客源码仓库">建立博客源码仓库</h3><p>首先在github上创建一个空的仓库用来存放博客程序.<br><img src="http://oneaboveall.qiniudn.com/cfw3ouietza4t3gvs6zhl0a32q.png" alt=""></p>
-<p>安装github windows客户端<a href="https://windows.github.com/" target="_blank" rel="external">https://windows.github.com/</a>. 注意github客户端是在线安装,如果安装不成功,就使用代理试试.<br>安装完成github客户端后,打开客户端并登录,把刚才创建的项目clone到本地.</p>
-<p><img src="http://oneaboveall.qiniudn.com/gabnv1oin9e01xtzndsg8rys98.png" alt=""></p>
-<p><img src="http://oneaboveall.qiniudn.com/siea9xj50icnmbsdq8u72m7dp9.png" alt=""></p>
-<h3 id="安装hexo">安装hexo</h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> -g hexo</span><br></pre></td></tr></table></figure>
-<p>hexo安装完成后,打开命令行,进入刚才的github仓库目录的上一级,初始化hexo项目.<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init <span class="tag">&lt;<span class="title">目录名</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p><img src="http://oneaboveall.qiniudn.com/7fnwja7g53y83s8yye5jy12d42.png" alt=""></p>
-<p>进入仓库目录,安装依赖模块<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span></span><br></pre></td></tr></table></figure></p>
-<p>大局域网安装起来可能会有点慢,耐心等待..</p>
-<p>安装完成后,运行hexo服务端<br><figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">server</span></span><br></pre></td></tr></table></figure></p>
-<p>打开<a href="http://127.0.0.1:4000" target="_blank" rel="external">http://127.0.0.1:4000</a>.<br><img src="http://oneaboveall.qiniudn.com/65033gqkxlz69mxb0z8yoa28ua.png" alt=""><br>安装成功</p>
-<p>常用命令:<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo clean <span class="comment">//清理</span></span><br><span class="line">hexo <span class="keyword">new</span> filename <span class="comment">//创建新文章</span></span><br><span class="line">hexo generate <span class="comment">//生成静态站点(位于public目录)</span></span><br><span class="line">hexo deploy <span class="comment">//发布,后面会讲</span></span><br></pre></td></tr></table></figure></p>
-<p>更多hexo命令,可以查看官方文档<a href="http://hexo.io/docs/" target="_blank" rel="external">http://hexo.io/docs/</a></p>
-<h3 id="安装hexo主题">安装hexo主题</h3><p>hexo主题有点少. 目前我在用jacman这个主题,这个比较适合国人用,集成了多说评论.</p>
-<p>在仓库目录里运行命令<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone <span class="symbol">https:</span>/<span class="regexp">/github.com/wuchong</span><span class="regexp">/jacman.git themes/jacman</span></span><br></pre></td></tr></table></figure></p>
-<p>将主题下载到themes/jacman目录.<br>打开仓库根目录下的配置文件<code>_config.yml</code> ,修改theme为 <code>theme: jacman</code></p>
-<p>重启服务器(hexo server)即可看到新样式<br>jacman主题的详细介绍 <a href="http://wuchong.me/jacman/2014/11/20/how-to-use-jacman/" target="_blank" rel="external">http://wuchong.me/jacman/2014/11/20/how-to-use-jacman/</a></p>
-<h3 id="提交仓库">提交仓库</h3><p>删除<code>theme</code>目录下的<code>landscape</code>目录,这个主题我们不用了.<br>删除<code>theme/jacman</code>目录下.git目录和.gitignore文件.<br>切换到github for windows客户端,提交仓库并同步到线上<br><img src="http://oneaboveall.qiniudn.com/ry1v1bsfgeewm8fnozxo4w7ory.png" alt=""></p>
-<h3 id="建立gh-pages分支">建立gh-pages分支</h3><p>用网页打开仓库地址<a href="https://github.com/benqy/hello-benqy" target="_blank" rel="external">https://github.com/benqy/hello-benqy</a><br>点击Settings<br><img src="http://oneaboveall.qiniudn.com/majdcf5zu3hrrtjj3u9lk3ifz8.png" alt=""><br>然后<br><img src="http://oneaboveall.qiniudn.com/wnj9c3c5g10xu7w7iq90pynjt6.png" alt=""><br>再然后<br><img src="http://oneaboveall.qiniudn.com/xvo1g5nw18c4042228nbpkmmib.png" alt=""><br>最后<br><img src="http://oneaboveall.qiniudn.com/znh4em8b089kvlvak7dw6v5597.png" alt=""><br>这样gh-pages分支就创建完成了.可以打开<a href="http://benqy.github.io/hello-benqy" target="_blank" rel="external">http://benqy.github.io/hello-benqy</a> 看看效果</p>
-<p>切换到该分支</p>
-<p><img src="http://oneaboveall.qiniudn.com/wwtkxifls0d7k6uaebrod3m2yy.png" alt=""></p>
-<p>复制分支的clone URL <a href="https://github.com/benqy/hello-benqy.git" target="_blank" rel="external">https://github.com/benqy/hello-benqy.git</a></p>
-<p>继续打开根目录的<code>_config.yml</code>,将deploy改为</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">deploy</span>:</span><br><span class="line">  <span class="attribute">type</span>: git</span><br><span class="line">  <span class="attribute">repository</span>: <span class="attribute">https</span>:<span class="comment">//github.com/benqy/hello-benqy.git</span></span><br><span class="line">  <span class="attribute">branch</span>: gh-pages</span><br></pre></td></tr></table></figure>
-<p>在根目录运行命令<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="operator"><span class="keyword">install</span> hexo-deployer-git <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure></p>
-<p>接下来运行生成静态站点并发布的命令<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy <span class="comment">--generate</span></span><br></pre></td></tr></table></figure></p>
-<p>过程中会需要输入github帐号密码<br>发布成功:<br><img src="http://oneaboveall.qiniudn.com/jnb4pxrpbfenr4i326igl7ukjf.png" alt=""><br>打开博客地址:<a href="http://benqy.github.io/hello-benqy" target="_blank" rel="external">http://benqy.github.io/hello-benqy</a> 会发现页面乱了,因为还没配置博客路径<br>依然是打开配置文件<code>config.yml</code>,根据注释修改URL配置<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">url:</span> <span class="string">http:</span><span class="comment">//yoursite.com</span></span><br><span class="line"><span class="string">root:</span> /</span><br></pre></td></tr></table></figure></p>
-<p>改为<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">url:</span> <span class="string">http:</span><span class="comment">//benqy.github.io/hello-benqy</span></span><br><span class="line"><span class="string">root:</span> /hello-benqy</span><br></pre></td></tr></table></figure></p>
-<p>重新发布<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo deploy <span class="comment">--generate</span></span><br></pre></td></tr></table></figure></p>
-<p>再次打开博客,一切都正常了</p>
-<h3 id="发布文章">发布文章</h3><p>至此,博客的搭建完成了.<br>以后要发文章,只要在博客目录运行<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">new</span> 文件名</span><br></pre></td></tr></table></figure></p>
-<p>就会在<code>source/_posts</code>下生成对应的<code>.md</code>文件.<br>运行本地服务器<br><figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">server</span></span><br></pre></td></tr></table></figure></p>
-<p>通过markdown格式编写文章,并打开本地地址127.0.0.1:4000查看实时效果</p>
-<p>文章写完后<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy <span class="comment">--generate</span></span><br></pre></td></tr></table></figure></p>
-<p>提交即可<br>记得主仓库也用github for windows提交到github上</p>
-<h3 id="配置cname">配置cname</h3><p>…</p>
-<h3 id="进阶:图片自动上传">进阶:图片自动上传</h3><p>利用七牛免费的存储和方便的接口来让我们的markdown编辑器在粘贴图片时自动上传到七牛云存储,并返回图片地址.<br>我博客里的所有图片都是这样上传的,写文章时完全不用停下来传图.</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/其他/">其他</a>
-</div>
-
-
-  <div class="article-tags">
+<section class="post" itemscope itemprop="blogitem">
   
-  <span></span> <a href="/tags/github/">github</a><a href="/tags/hexo/">hexo</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/04/13/github-hexo-blog/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/04/13/github-hexo-blog/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2015/04/13/as3-javascript/" title="javascript与as3交互" itemprop="url">javascript与as3交互</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="hmj.name/about" title="骑兵程序员" target="_blank" itemprop="author">骑兵程序员</a>
-		
-  <p class="article-time">
-    <time datetime="2015-04-13T10:08:50.000Z" itemprop="datePublished"> 发表于 2015-04-13</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>由于公司的广告业务需要涉及到flash,因此稍微学习了一下,把一些重要的记录下来</p>
-<p>这篇主要讲讲js和as3之间如何交互,如何实现简单的类似事件的机制.</p>
-<h3 id="模拟事件">模拟事件</h3><p>在as3中,无论是调用js的方法,还是暴露接口给js,都是用ExternalInterface这个api.<br><strong>暴露接口</strong>:ExternalInterface.addCallback(函数名, 函数)<br><strong>调用js方法</strong>:ExternalInterface.call(方法名, 参数)</p>
-<p>这里所说的模拟事件,就是在falsh素材的各个状态切换时,通知页面.如加载完毕时,触发onload事件,播放时触发onplay,停止时触发onstop等等.</p>
-<p>采用的方案,是在object标签里,添加自定义的属性供as3调用,属性名是flash定死的:flashvars,值的格式类似url里的参数部分,为用&amp;分隔的键值对,如下:</p>
-<p><img src="https://raw.github.com/benqy/blogcdn/master/as3andjs/01.png" alt="01"></p>
-<p>在as3中,这样读取属性:</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flashvars= LoaderInfo( <span class="keyword">this</span>.root.loaderInfo ).parameters;</span><br></pre></td></tr></table></figure>
-<p>flashvars是一个object变量,定义如下:</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">private</span> <span class="tag">var</span> <span class="rule"><span class="attribute">flashvars</span>:<span class="value">Object</span></span>;</span><br></pre></td></tr></table></figure>
-<p>读取后,flashvars的值:</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">Object</span> &#123;<span class="attribute">onload</span>: <span class="string">"advnr70wyu5xncanvpwzzo0pory66"</span>, <span class="attribute">onplay</span>: <span class="string">"advf4q8r99cfnryhn2tk2n3s48kf0"</span>, <span class="attribute">onstop</span>: <span class="string">"adv7sgjk0529cd00q6ojuf537"</span>&#125;</span><br></pre></td></tr></table></figure>
-<p>对象的key为事件名,值为事件处理函数名,所有事件处理函数都在window.flashCallback命名空间下,并且名字是随机生成的不可重复的guid.</p>
-<p>在as3里,我们判断是否支持调用js函数:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ExternalInterface.available</span><br></pre></td></tr></table></figure>
-<p>以onload事件为例,在素材加载完毕后,如果支持调用js函数,则触发onload事件:</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//素材加载完毕,调用onload</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">onload</span><span class="params">()</span><span class="type">:void</span> </span>&#123; </span><br><span class="line">	<span class="keyword">if</span> (ExternalInterface.available) &#123;</span><br><span class="line">		textField.text = <span class="string">'onload'</span>;</span><br><span class="line">		<span class="keyword">if</span>(flashvars.onload)&#123;</span><br><span class="line">			ExternalInterface.call(<span class="string">"window.flashCallback."</span> + flashvars.onload);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上面提到,函数名是随机生成的,类似jquery的$.ajax方法里的callback实现方式,以下是封装过的生成object标签的方法:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//adv.flash.embed是封装过的生成object标签的方法</span></span><br><span class="line">asyncTest(<span class="string">'flash标签自定义事件'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">  expect(<span class="number">3</span>);</span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(adv.flash.embed(&#123;</span><br><span class="line">    id: <span class="string">'flashGetSWF'</span>,</span><br><span class="line">    source: <span class="string">'test.swf'</span>,</span><br><span class="line">    params: &#123;</span><br><span class="line">      onload: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.play();</span><br><span class="line">        ok(<span class="literal">true</span>);</span><br><span class="line">      &#125;,</span><br><span class="line">      onplay: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">        ok(<span class="literal">true</span>);</span><br><span class="line">        <span class="keyword">this</span>.stop();</span><br><span class="line">      &#125;,</span><br><span class="line">      onstop: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">        ok(<span class="literal">true</span>);</span><br><span class="line">        start();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>几个回调函数都是匿名函数,在生成标签之前,会给函数在window.flashCallback下分配一个随机名称.现在只是简单的实现单个事件处理函数的绑定,如果有需要支持多个,只要再做一些简单的封装即可.</p>
-<p><strong>adv.flash.embed的实现要点</strong>:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//遍历自定义参数</span></span><br><span class="line">adv.util.forEach(params, <span class="function"><span class="keyword">function</span> <span class="params">(value, key)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> funcVar = value;</span><br><span class="line">  <span class="keyword">if</span> (adv.util.isFunction(value)) &#123;</span><br><span class="line">    <span class="comment">//如果是函数,则生成一个随机的名称,并存储在flashCallback命名空间下</span></span><br><span class="line">    funcVar = adv.util.guid();</span><br><span class="line">    <span class="built_in">window</span>.flashCallback[funcVar] = <span class="function"><span class="keyword">function</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> swfObj = adv.flash.getSWF(id);</span><br><span class="line">      <span class="comment">//this指向flash对象本身</span></span><br><span class="line">      value.apply(swfObj, <span class="built_in">arguments</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  paramArr.push(key + <span class="string">'='</span> + funcVar);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p><strong>执行结果</strong>:<br><img src="https://raw.github.com/benqy/blogcdn/master/as3andjs/02.png" alt="02"></p>
-<h3 id="暴露接口给js">暴露接口给js</h3><p>as3里,实现这个很简单,先上代码再说:</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span> </span>&#123; </span><br><span class="line">	flashvars= LoaderInfo( <span class="keyword">this</span>.root.loaderInfo ).parameters;</span><br><span class="line">	<span class="comment">//此为调试用</span></span><br><span class="line">	ExternalInterface.call(<span class="string">"window.flashCallback.trace"</span>,flashvars);</span><br><span class="line">	<span class="comment">//加载素材</span></span><br><span class="line">	textField.width=<span class="number">200</span>;</span><br><span class="line">	textField.height = <span class="number">90</span>;</span><br><span class="line">	addChild(textField);</span><br><span class="line">	<span class="comment">//素材加载完毕,准备播放</span></span><br><span class="line">	<span class="comment">//暴露api给js</span></span><br><span class="line">	<span class="keyword">if</span>(ExternalInterface.available)&#123;</span><br><span class="line">		ExternalInterface.addCallback(<span class="string">"play"</span>, play);</span><br><span class="line">		ExternalInterface.addCallback(<span class="string">"stop"</span>, stop);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//触发onload</span></span><br><span class="line">	onload();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//这个方法被调用时,开始播放</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">play</span><span class="params">()</span><span class="type">:Boolean</span> </span>&#123;</span><br><span class="line">	textField.text = <span class="string">'play'</span>;</span><br><span class="line">	<span class="keyword">if</span>(flashvars.onplay)&#123;</span><br><span class="line">		ExternalInterface.call(<span class="string">"window.flashCallback."</span> + flashvars.onplay);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line">		</span><br><span class="line"><span class="comment">//这个方法被调用时,停止播放</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">stop</span><span class="params">()</span><span class="type">:Boolean</span> </span>&#123;</span><br><span class="line">	textField.text = <span class="string">'stop'</span>;</span><br><span class="line">	<span class="keyword">if</span>(flashvars.onstop)&#123;</span><br><span class="line">		ExternalInterface.call(<span class="string">"window.flashCallback."</span> + flashvars.onstop,flashvars);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这里定义了两个方法,play和stop,在构造函数(test)里,判断ExternalInterface是否可用,如果可用,就暴露出这两个方法:</p>
-<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ExternalInterface.addCallback(<span class="string">"play"</span>, <span class="keyword">play</span>);</span><br><span class="line">ExternalInterface.addCallback(<span class="string">"stop"</span>, stop);</span><br></pre></td></tr></table></figure>
-<p><strong>在js里调用</strong>:  </p>
-<p>跨浏览器的获取flash对象引用方法</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">getSWF:<span class="function"><span class="keyword">function</span><span class="params">(name)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (navigator.appName.indexOf(<span class="string">"Microsoft"</span>) != -<span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">window</span>[name];</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">document</span>[name];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<p>暴露出的as3方法,会直接附加在object对象上,要注意的是,我们要等onload之后才去调用,保证falsh加载完毕:</p>
-<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">asyncTest('js调用flash方法', function () &#123;</span><br><span class="line">  expect(<span class="number">1</span>);</span><br><span class="line">  document.body.appendChild(adv.flash.embed(&#123;</span><br><span class="line">    id: 'flashcallSWF',</span><br><span class="line">    source: 'test.swf',</span><br><span class="line">    width: <span class="number">300</span>,</span><br><span class="line">    height: <span class="number">190</span>,</span><br><span class="line">    params: &#123;</span><br><span class="line">      onload: function () &#123;</span><br><span class="line">        <span class="keyword">var</span> <span class="literal">result</span> = this.play();</span><br><span class="line">        ok(<span class="literal">result</span>);</span><br><span class="line">        start();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>事件函数的this指向flash对象,所以这里不用再获取了</p>
-<p><strong>执行结果</strong>:<br><img src="https://raw.github.com/benqy/blogcdn/master/as3andjs/03.png" alt="03"></p>
-<p>完整的as3代码:</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="package"><span class="keyword">package</span> &#123;</span> </span><br><span class="line">	<span class="preprocessor"><span class="keyword">import</span> flash.display.LoaderInfo;</span></span><br><span class="line">	<span class="preprocessor"><span class="keyword">import</span> flash.display.Sprite;</span></span><br><span class="line">	<span class="preprocessor"><span class="keyword">import</span> flash.external.ExternalInterface;</span></span><br><span class="line">	<span class="preprocessor"><span class="keyword">import</span> flash.text.TextField;</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> <span class="keyword">extends</span> <span class="title">Sprite</span> </span>&#123;</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">var</span> flashvars:Object;</span><br><span class="line">		<span class="comment">//用textField文本的改变来代表广告播放的状态转变</span></span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">var</span> textField:TextField = <span class="keyword">new</span> TextField(); </span><br><span class="line">		<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">()</span> </span>&#123; </span><br><span class="line">			flashvars= LoaderInfo( <span class="keyword">this</span>.root.loaderInfo ).parameters;</span><br><span class="line">			<span class="comment">//加载素材</span></span><br><span class="line">			textField.width=<span class="number">200</span>;</span><br><span class="line">			textField.height = <span class="number">90</span>;</span><br><span class="line">			addChild(textField);</span><br><span class="line">			<span class="comment">//素材加载完毕,准备播放</span></span><br><span class="line">			<span class="comment">//暴露api给js</span></span><br><span class="line">			<span class="keyword">if</span>(ExternalInterface.available)&#123;</span><br><span class="line">				ExternalInterface.addCallback(<span class="string">"play"</span>, play);</span><br><span class="line">				ExternalInterface.addCallback(<span class="string">"stop"</span>, stop);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">//触发onload</span></span><br><span class="line">			onload();</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//这个方法被调用时,开始播放</span></span><br><span class="line">		<span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">play</span><span class="params">()</span><span class="type">:Boolean</span> </span>&#123;</span><br><span class="line">			textField.text = <span class="string">'play'</span>;</span><br><span class="line">			<span class="keyword">if</span>(flashvars.onplay)&#123;</span><br><span class="line">				ExternalInterface.call(<span class="string">"window.flashCallback."</span> + flashvars.onplay);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		&#125;</span><br><span class="line">				</span><br><span class="line">		<span class="comment">//这个方法被调用时,停止播放</span></span><br><span class="line">		<span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">stop</span><span class="params">()</span><span class="type">:Boolean</span> </span>&#123;</span><br><span class="line">			textField.text = <span class="string">'stop'</span>;</span><br><span class="line">			<span class="keyword">if</span>(flashvars.onstop)&#123;</span><br><span class="line">				ExternalInterface.call(<span class="string">"window.flashCallback."</span> + flashvars.onstop,flashvars);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		&#125; </span><br><span class="line">		</span><br><span class="line">		<span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">onload</span><span class="params">()</span><span class="type">:void</span> </span>&#123; </span><br><span class="line">			<span class="keyword">if</span> (ExternalInterface.available) &#123;</span><br><span class="line">				textField.text = <span class="string">'onload'</span>;</span><br><span class="line">				<span class="keyword">if</span>(flashvars.onload)&#123;</span><br><span class="line">					ExternalInterface.call(<span class="string">"window.flashCallback."</span> + flashvars.onload);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125; </span><br><span class="line">		&#125; </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/前端/">前端</a>
-</div>
-
-
-  <div class="article-tags">
+    <a href="/2015/04/17/gungnir-01/" title="前端调试工具:Gungnir" itemprop="url">
   
-  <span></span> <a href="/tags/as3/">as3</a><a href="/tags/javascript/">javascript</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/04/13/as3-javascript/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/04/13/as3-javascript/" data-count-type="comments">&nbsp;</a>
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
+    <h1 itemprop="name">前端调试工具:Gungnir</h1>
     
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
+     
+           <p itemprop="description" >搞前端的,特别是负责广告脚本开发的,经常接到需求:”xxx页面广告出不来/xx页面有脚本错误,赶紧帮忙看下”.这时候就得把页面内容下载到本地,打开fiddler,然后配置好代理,再用编辑器打开调试.
+天天遇到这种事情的话,就会觉得fiddler的这些操作还不够简单.而且fiddl</p>
+        
     
-      <a href="/2015/04/13/ie-proxy-setting/" title="使用程序修改系统(IE)代理设置" itemprop="url">使用程序修改系统(IE)代理设置</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="hmj.name/about" title="骑兵程序员" target="_blank" itemprop="author">骑兵程序员</a>
-		
-  <p class="article-time">
-    <time datetime="2015-04-13T09:41:01.000Z" itemprop="datePublished"> 发表于 2015-04-13</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>这是本人在做的一个前端开发调试工具(<a href="https://github.com/benqy/Gungnir" target="_blank" rel="external">HttpMock</a>),功能是web服务器+http日记+http代理(类似fiddler),其中的代理功能,需要在web服务启动时,自动去设置各浏览器的代理设置.</p>
-<p>我原先是通过写注册表的方式去实现,实现方法很简单,写一个注册表文件,启动的时候自动运行一下这个注册表文件就可以.  </p>
-<p>修改代理的注册表文件的内容,<strong>proxy.reg</strong>:<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings]  </span><br><span class="line"><span class="string">"MigrateProxy"</span>=<span class="string">dword:</span><span class="number">00000001</span>  </span><br><span class="line"><span class="string">"ProxyEnable"</span>=<span class="string">dword:</span><span class="number">00000001</span>  </span><br><span class="line"><span class="string">"ProxyServer"</span>=<span class="string">"http=127.0.0.1:17173"</span></span><br></pre></td></tr></table></figure></p>
-<p>类似的,取消代理的注册表文件,<strong>disproxy.reg</strong>:<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings]</span><br><span class="line"><span class="string">"MigrateProxy"</span>=<span class="string">dword:</span><span class="number">00000001</span></span><br><span class="line"><span class="string">"ProxyEnable"</span>=<span class="string">dword:</span><span class="number">00000000</span></span><br><span class="line"><span class="string">"ProxyServer"</span>=<span class="string">""</span></span><br></pre></td></tr></table></figure></p>
-<p>这个方式非常的简单,但是存在一个严重的问题,就是修改完注册表之后,如果不重启ie,代理设置不会马上生效(这样做出来的软件,实在太山寨,简直没法用啊,什么烂软件). </p>
-<p>后来,发现fiddler是用<strong>wininet</strong>这个工具来设置ie代理.因此,google了一番之后,找到了wininet.dll这个东西,然后用.NET写了个简单的命令行工具.功能很简单,直接上代码:  </p>
-<p><strong>ProxyManager.cs</strong><br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> System.Runtime.InteropServices;</span><br><span class="line"><span class="keyword">using</span> Microsoft.Win32;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">proxysetting</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ProxyManager</span></span><br><span class="line">    &#123;</span><br><span class="line">        [DllImport(<span class="string">"wininet.dll"</span>, SetLastError = <span class="keyword">true</span>)]</span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">extern</span> <span class="keyword">bool</span> <span class="title">InternetSetOption</span><span class="params">(IntPtr hInternet, <span class="keyword">int</span> dwOption, IntPtr lPBuffer, <span class="keyword">int</span> lpdwBufferLength)</span></span>;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">const</span> <span class="keyword">int</span> INTERNET_OPTION_REFRESH = <span class="number">0x000025</span>;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">const</span> <span class="keyword">int</span> INTERNET_OPTION_SETTINGS_CHANGED = <span class="number">0x000027</span>;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">const</span> <span class="keyword">string</span> regeditKey = <span class="string">"Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings"</span>;</span><br><span class="line">        <span class="keyword">private</span> List&lt;<span class="keyword">string</span>&gt; proxyLibs = <span class="keyword">new</span> List&lt;<span class="keyword">string</span>&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Reflush</span><span class="params">()</span></span><br><span class="line">        </span>&#123;</span><br><span class="line">            InternetSetOption(IntPtr.Zero, INTERNET_OPTION_SETTINGS_CHANGED, IntPtr.Zero, <span class="number">0</span>);</span><br><span class="line">            InternetSetOption(IntPtr.Zero, INTERNET_OPTION_REFRESH, IntPtr.Zero, <span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Add</span><span class="params">(<span class="keyword">string</span> server)</span></span><br><span class="line">        </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.proxyLibs.Add(server);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Run</span><span class="params">()</span></span><br><span class="line">        </span>&#123;</span><br><span class="line">            RegistryKey key = Registry.CurrentUser.OpenSubKey(regeditKey, <span class="keyword">true</span>);</span><br><span class="line">            key.SetValue(<span class="string">"ProxyServer"</span>, String.Join(<span class="string">";"</span>, <span class="keyword">this</span>.proxyLibs.ToArray()));</span><br><span class="line">            key.SetValue(<span class="string">"ProxyEnable"</span>, <span class="number">1</span>);</span><br><span class="line">            key.Close();</span><br><span class="line">            <span class="keyword">this</span>.Reflush();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Stop</span><span class="params">()</span></span><br><span class="line">        </span>&#123;</span><br><span class="line">            RegistryKey key = Registry.CurrentUser.OpenSubKey(regeditKey, <span class="keyword">true</span>);</span><br><span class="line">            key.SetValue(<span class="string">"ProxyEnable"</span>, <span class="number">0</span>);</span><br><span class="line">            key.Close();</span><br><span class="line">            <span class="keyword">this</span>.Reflush();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>ProxyManager类简单的封装wininet.dll的代理设置接口,和使用注册表文件的区别在于<strong>this.Reflush()</strong>这个方法,强制刷新代理设置,这样就不用重启IE了.  </p>
-<p>然后是在Main函数里调用:  </p>
-<p><strong>Program.cs</strong><br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">proxysetting</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">class</span> <span class="title">Program</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span><span class="params">(<span class="keyword">string</span>[] args)</span></span><br><span class="line">        </span>&#123;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">var</span> pm = <span class="keyword">new</span> ProxyManager();</span><br><span class="line">            <span class="keyword">if</span> (args.Length &lt; <span class="number">1</span>) <span class="keyword">return</span>;</span><br><span class="line">            <span class="keyword">if</span> (args[<span class="number">0</span>] == <span class="string">"stop"</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                pm.Stop();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; args.Length; i++)</span><br><span class="line">                &#123;</span><br><span class="line">                    pm.Add(args[i]);</span><br><span class="line">                &#125;</span><br><span class="line">                pm.Run();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>通过命令行参数来设置代理,可以用空格来设置多个协议的代理,如下:</p>
-<p>设置http和https代理,代理ip为127.0.0.1,端口号17173<br><strong>proxysetting http=127.0.0.1:17173 https=127.0.0.1:17173</strong><br>nodejs中调用:</p>
-<pre><code>exports.setProxy = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{
-<span class="keyword">var</span> exec = <span class="built_in">require</span>(<span class="string">"child_process"</span>).exec;
-exec(__dirname + <span class="string">'proxysetting http=127.0.0.1:17173 https=127.0.0.1:17173'</span>);
-};
-</code></pre><p>取消代理<br><strong>proxysetting stop</strong><br>nodejs中调用:</p>
-<pre><code>exports.disProxy = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{
-<span class="keyword">var</span> exec = <span class="built_in">require</span>(<span class="string">"child_process"</span>).exec;
-exec(__dirname + <span class="string">'proxysetting stop'</span>);
-};
-</code></pre><p>打包好的exe文件:<a href="http://pan.baidu.com/s/1pJjuNG3" target="_blank" rel="external">proxysetting</a></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/工具/">工具</a>
-</div>
+    <time datetime="2015-04-17T01:58:32.000Z" itemprop="datePublished">2015-04-17</time>
+  </a>
+</section>
 
 
-  <div class="article-tags">
+
+
+
+
   
-  <span></span> <a href="/tags/Gungnir/">Gungnir</a><a href="/tags/代理/">代理</a>
-  </div>
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2015/04/13/github-hexo-blog/" title="使用hexo在github上搭建个人博客" itemprop="url">
+  
+    <h1 itemprop="name">使用hexo在github上搭建个人博客</h1>
+    
+     
+           <p itemprop="description" >此教程适合我这种虽然在用github,却不懂git命令的文盲.
+建立博客源码仓库首先在github上创建一个空的仓库用来存放博客程序.
+安装github windows客户端https://windows.github.com/. 注意github客户端是在线安装,如果安装不成功</p>
+        
+    
+    <time datetime="2015-04-13T10:35:31.000Z" itemprop="datePublished">2015-04-13</time>
+  </a>
+</section>
 
-</div>
 
 
 
 
-<div class="comments-count">
-	
-	  	<span></span>
-		<a href="/2015/04/13/ie-proxy-setting/#comments" class="ds-thread-count comments-count-link" data-thread-key="2015/04/13/ie-proxy-setting/" data-count-type="comments">&nbsp;</a>
-	
-</div>
 
-</footer>
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2015/04/13/as3-javascript/" title="javascript与as3交互" itemprop="url">
+  
+    <h1 itemprop="name">javascript与as3交互</h1>
+    
+     
+           <p itemprop="description" >由于公司的广告业务需要涉及到flash,因此稍微学习了一下,把一些重要的记录下来
+这篇主要讲讲js和as3之间如何交互,如何实现简单的类似事件的机制.
+模拟事件在as3中,无论是调用js的方法,还是暴露接口给js,都是用ExternalInterface这个api.暴露接口:Ex</p>
+        
+    
+    <time datetime="2015-04-13T10:08:50.000Z" itemprop="datePublished">2015-04-13</time>
+  </a>
+</section>
 
 
-    </article>
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2015/04/13/ie-proxy-setting/" title="使用程序修改系统(IE)代理设置" itemprop="url">
+  
+    <h1 itemprop="name">使用程序修改系统(IE)代理设置</h1>
+    
+     
+           <p itemprop="description" >这是本人在做的一个前端开发调试工具(HttpMock),功能是web服务器+http日记+http代理(类似fiddler),其中的代理功能,需要在web服务启动时,自动去设置各浏览器的代理设置.
+我原先是通过写注册表的方式去实现,实现方法很简单,写一个注册表文件,启动的时候自动</p>
+        
+    
+    <time datetime="2015-04-13T09:41:01.000Z" itemprop="datePublished">2015-04-13</time>
+  </a>
+</section>
 
 
 
