@@ -1,0 +1,543 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>自己动手制作更好用的markdown编辑器-02 | 骑兵程序员</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="骑兵程序员">
+    
+
+    
+    <meta name="description" content="上一篇我们搭建好了项目结构,简单的实现了第一个模块(studio)的基本功能,已经能够进行简单的markdown编辑.
+在这篇里我们将实现以下功能:
+
+底部工具条UI,状态栏信息
+新建文件,打开文件,保存文件
+
+工具条由于工具条按钮绑定的都是studio模块下的功能,因此我把index.html上的工具条移动到了studio模块的视图模版modules/studio/views/studio.ht">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自己动手制作更好用的markdown编辑器-02">
+<meta property="og:url" content="hmj.name/2015/04/23/hexomd-02/index.html">
+<meta property="og:site_name" content="骑兵程序员">
+<meta property="og:description" content="上一篇我们搭建好了项目结构,简单的实现了第一个模块(studio)的基本功能,已经能够进行简单的markdown编辑.
+在这篇里我们将实现以下功能:
+
+底部工具条UI,状态栏信息
+新建文件,打开文件,保存文件
+
+工具条由于工具条按钮绑定的都是studio模块下的功能,因此我把index.html上的工具条移动到了studio模块的视图模版modules/studio/views/studio.ht">
+<meta property="og:image" content="http://oneaboveall.qiniudn.com/3jb6jnygc9uan5wr7m4pekf8yq.png">
+<meta property="og:image" content="http://oneaboveall.qiniudn.com/hx78bbaw2d3d64scor5lml4hd7.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自己动手制作更好用的markdown编辑器-02">
+<meta name="twitter:description" content="上一篇我们搭建好了项目结构,简单的实现了第一个模块(studio)的基本功能,已经能够进行简单的markdown编辑.
+在这篇里我们将实现以下功能:
+
+底部工具条UI,状态栏信息
+新建文件,打开文件,保存文件
+
+工具条由于工具条按钮绑定的都是studio模块下的功能,因此我把index.html上的工具条移动到了studio模块的视图模版modules/studio/views/studio.ht">
+
+    
+    <link rel="alternative" href="/atom.xml" title="骑兵程序员" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="骑兵程序员" title="骑兵程序员"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="骑兵程序员">骑兵程序员</a></h1>
+				<h2 class="blog-motto">写代码是为了退休后可以天天玩dota</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">博客</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:hmj.name">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/04/23/hexomd-02/" title="自己动手制作更好用的markdown编辑器-02" itemprop="url">自己动手制作更好用的markdown编辑器-02</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="hmj.name/about" title="骑兵程序员" target="_blank" itemprop="author">骑兵程序员</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-23T01:28:59.000Z" itemprop="datePublished"> 发表于 2015-04-23</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#工具条"><span class="toc-number">1.</span> <span class="toc-text">工具条</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#样式"><span class="toc-number">1.1.</span> <span class="toc-text">样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#工具条截图"><span class="toc-number">1.2.</span> <span class="toc-text">工具条截图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#状态栏消息"><span class="toc-number">2.</span> <span class="toc-text">状态栏消息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件操作"><span class="toc-number">3.</span> <span class="toc-text">文件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#新建文件"><span class="toc-number">3.1.</span> <span class="toc-text">新建文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#保存文件"><span class="toc-number">3.2.</span> <span class="toc-text">保存文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#打开文件"><span class="toc-number">3.3.</span> <span class="toc-text">打开文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#附件"><span class="toc-number">5.</span> <span class="toc-text">附件</span></a></li></ol>
+		
+		</div>
+		
+		<p><a href="http://hmj.name/2015/04/21/hexomd-01/">上一篇</a>我们搭建好了项目结构,简单的实现了第一个模块(studio)的基本功能,已经能够进行简单的markdown编辑.</p>
+<p>在这篇里我们将实现以下功能:</p>
+<ol>
+<li>底部工具条UI,状态栏信息</li>
+<li>新建文件,打开文件,保存文件</li>
+</ol>
+<h2 id="工具条">工具条</h2><p>由于工具条按钮绑定的都是studio模块下的功能,因此我把<code>index.html</code>上的工具条移动到了<code>studio</code>模块的视图模版<code>modules/studio/views/studio.html</code>里.</p>
+<h3 id="样式">样式</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"content studio-wrap"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">textarea</span> <span class="attribute">name</span>=<span class="value">""</span> <span class="attribute">cols</span>=<span class="value">"30"</span> <span class="attribute">rows</span>=<span class="value">"10"</span> <span class="attribute">hmd-editor</span>&gt;</span><span class="tag">&lt;/<span class="title">textarea</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">footer</span> <span class="attribute">class</span>=<span class="value">"tool"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--状态栏消息--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">section</span> <span class="attribute">class</span>=<span class="value">"msg"</span> <span class="attribute">id</span>=<span class="value">"msg"</span>&gt;</span><span class="tag">&lt;/<span class="title">section</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">section</span> <span class="attribute">class</span>=<span class="value">"btn-group studio-btn-group"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">studio-newfile</span> <span class="attribute">href</span>=<span class="value">"javascript://"</span> <span class="attribute">class</span>=<span class="value">"btn btn-primary"</span> <span class="attribute">style</span>=<span class="value">"border-radius:0;"</span> <span class="attribute">title</span>=<span class="value">"新建文件"</span>&gt;</span><span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"glyphicon glyphicon glyphicon-file"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">studio-openfile</span> <span class="attribute">href</span>=<span class="value">"javascript://"</span> <span class="attribute">class</span>=<span class="value">"btn btn-primary"</span> <span class="attribute">title</span>=<span class="value">"打开文件"</span> <span class="attribute">ng-click</span>=<span class="value">"openTerminal()"</span>&gt;</span><span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"glyphicon glyphicon-folder-open"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">studio-save</span> <span class="attribute">href</span>=<span class="value">"javascript://"</span> <span class="attribute">class</span>=<span class="value">"btn btn-primary"</span> <span class="attribute">title</span>=<span class="value">"保存更改"</span> <span class="attribute">style</span>=<span class="value">"border-radius:0;"</span>&gt;</span><span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"glyphicon glyphicon-floppy-disk"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span><span class="tag">&lt;/<span class="title">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">section</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">footer</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><a href="https://github.com/benqy/hexomd/blob/master/app/css/index.css" target="_blank" rel="external">CSS</a>写得比较难看,没什么好说的.样式里我大量使用了<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/calc" target="_blank" rel="external">calc</a>这个功能,这在布局的时候非常的方便,比如:<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">body</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="function">calc</span>(<span class="number">100%</span> - <span class="number">50px</span>)</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">overflow</span>:<span class="value"> hidden</span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#fff</span></span></span>;</span><br><span class="line">    <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#1E1E1E</span></span></span>;</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="工具条截图">工具条截图</h3><p><img src="http://oneaboveall.qiniudn.com/3jb6jnygc9uan5wr7m4pekf8yq.png" alt=""><br>配色比较丑,一开始我是只在乎功能的,UI是我的弱项,我们还是先能用再好用最后才好看吧.</p>
+<h2 id="状态栏消息">状态栏消息</h2><p>状态栏消息这功能很简单,用来显示各种操作的信息.这个功能为全局可用,因此把功能写到<code>app.js</code>里<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//消息等级</span></span><br><span class="line"><span class="keyword">var</span> msgTimer = <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">var</span> MSG_LEVEL = &#123;</span><br><span class="line">    info: <span class="string">'info'</span>,</span><br><span class="line">    warning: <span class="string">'warning'</span>,</span><br><span class="line">    debug: <span class="string">'debug'</span>,</span><br><span class="line">    error:<span class="string">'error'</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//状态栏消息</span></span><br><span class="line">hmd.msg = <span class="function"><span class="keyword">function</span> <span class="params">(txt, lv)</span> </span>&#123;</span><br><span class="line">  lv = lv || MSG_LEVEL.info;</span><br><span class="line">  $(<span class="string">'#msg'</span>)</span><br><span class="line">  .removeClass(MSG_LEVEL.info)</span><br><span class="line">  .removeClass(MSG_LEVEL.warning)</span><br><span class="line">  .removeClass(MSG_LEVEL.debug)</span><br><span class="line">  .removeClass(MSG_LEVEL.error)</span><br><span class="line">  .addClass(lv).text(txt);</span><br><span class="line">  clearTimeout(msgTimer);</span><br><span class="line">  msgTimer = setTimeout(<span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    $(<span class="string">'#msg'</span>)</span><br><span class="line">    .removeClass(MSG_LEVEL.info)</span><br><span class="line">    .removeClass(MSG_LEVEL.warning)</span><br><span class="line">    .removeClass(MSG_LEVEL.debug)</span><br><span class="line">    .removeClass(MSG_LEVEL.error);</span><br><span class="line">  &#125;, <span class="number">5000</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>eg: 文件保存成功时显示<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> studio.directive(<span class="string">'hmdEditor'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">(<span class="variable">$scope</span>, elem)</span> </span>&#123;</span><br><span class="line">    hmd.editor.init(&#123;el:elem[<span class="number">0</span>]&#125;,<span class="string">'E:\\Temp\\test\\test.md'</span>);</span><br><span class="line">    hmd.editor.on(<span class="string">'saved'</span>,<span class="function"><span class="keyword">function</span><span class="params">(filepath)</span></span>&#123;</span><br><span class="line">      <span class="keyword">var</span> fileNameArr = filepath.split(<span class="string">'\\'</span>);</span><br><span class="line">      hmd.msg(<span class="string">'文件:'</span> + fileNameArr[fileNameArr.length - <span class="number">1</span>] + <span class="string">'保存成功!'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>有一点要注意的事,editor都是尽量采用事件的方式来对外提供接口,这样可以让editor与外部的耦合度降低.</p>
+<h2 id="文件操作">文件操作</h2><p>工具条的bt-group里有三个按钮,分别绑定了三个studio下的directive:<code>studio-newfile</code>,<code>studio-openfile</code>,<code>studio-save</code>.<br>现在打开<code>modules/studio/directives.js</code>文件,开始实现这3个功能.</p>
+<h3 id="新建文件">新建文件</h3><p>这个功能很简单,只要把当前文件设为空,并且清空编辑器内容就算是新建文件了,保存的时候才会让用户选择保存路径.</p>
+<p>修改<code>editor.js</code>的<code>setFile</code>方法<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置当前文件</span></span><br><span class="line">setFile:<span class="function"><span class="keyword">function</span><span class="params">(filepath)</span></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(filepath &amp;&amp; fs.existsSync(filepath))&#123;</span><br><span class="line">    <span class="keyword">var</span> txt = util.readFileSync(filepath);</span><br><span class="line">    <span class="keyword">this</span>.filepath = filepath;</span><br><span class="line">    <span class="keyword">this</span>.cm.setValue(txt);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.filepath = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">this</span>.cm.setValue(<span class="string">''</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>实现<code>directive</code>,点击按钮时调用编辑器的<code>setFile</code>让<code>filepath</code>为空<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">studio.directive(<span class="string">'studioNewfile'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">($scope, elem)</span> </span>&#123;</span><br><span class="line">    $(elem[<span class="number">0</span>]).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">      hmd.editor.setFile();</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>这样新建文件按钮就完成了,其实这按钮的功能就是清空编辑器,真正的保存新文件功能在保存按钮功能里实现.</p>
+<h3 id="保存文件">保存文件</h3><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a studio-save <span class="variable">ng-class=</span><span class="string">"&#123;'disabled':!editorChanged&#125;"</span> <span class="variable">href=</span><span class="string">"javascript://"</span> <span class="variable">class=</span><span class="string">"btn btn-primary"</span> <span class="variable">title=</span><span class="string">"保存更改(Ctrl+S)"</span> <span class="variable">style=</span><span class="string">"border-radius:0;"</span>&gt;省略..&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+<p>保存按钮只有在文本有改动时才可用,这样用户就能很直观的看到是否已保存(禁用按钮时,按ctrl+s依然可以保存,很多人都习惯一直按ctrl+s)<br>通过ng-class来实现这个功能,将class<code>disabled</code>绑定到editorChanged这个上下文变量上<code>ng-class=&quot;{&#39;disabled&#39;:!editorChanged}&quot;</code>.<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> studio.directive(<span class="string">'studioSave'</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">   <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">(<span class="variable">$scope</span>,elem)</span></span>&#123;</span><br><span class="line">     <span class="keyword">var</span> editor = hmd.editor;</span><br><span class="line">     <span class="comment">//标识是否有未保存的变更.</span></span><br><span class="line">     <span class="variable">$scope</span>.editorChanged = <span class="keyword">false</span>;</span><br><span class="line">     editor.on(<span class="string">'change'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(cm, change)</span> </span>&#123;</span><br><span class="line">       <span class="variable">$scope</span>.editorChanged = <span class="keyword">true</span>;</span><br><span class="line">       <span class="variable">$scope</span>.<span class="variable">$digest</span>();</span><br><span class="line">     &#125;);</span><br><span class="line">     editor.on(<span class="string">'saved'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">       <span class="variable">$scope</span>.editorChanged = <span class="keyword">false</span>;</span><br><span class="line">       <span class="variable">$scope</span>.<span class="variable">$digest</span>();</span><br><span class="line">     &#125;);</span><br><span class="line">     </span><br><span class="line">     $(elem[<span class="number">0</span>]).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">       editor.save();</span><br><span class="line">     &#125;);</span><br><span class="line">   &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>这样$scope.editorChanged变化时,保存按钮也会跟着变化,我们不需要直接操作dom元素.</p>
+<p><a href="https://github.com/benqy/hexomd/blob/master/app/modules/studio/editor.js" target="_blank" rel="external">editor.js</a>里保存功能的实现</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//保存文件</span></span><br><span class="line">save : <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> txt = <span class="keyword">this</span>.cm.getValue();</span><br><span class="line">  <span class="keyword">if</span>(<span class="keyword">this</span>.filepath)&#123;</span><br><span class="line">    util.writeFileSync(<span class="keyword">this</span>.filepath, txt);</span><br><span class="line">    <span class="keyword">this</span>.fire(<span class="string">'saved'</span>,<span class="keyword">this</span>.filepath);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.saveAs();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果filepath不存在,那就调用saveAs方法来引导用户保存到新建的文件里.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//另存为对话框</span></span><br><span class="line">saveAs:<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">var</span> me = <span class="keyword">this</span>;</span><br><span class="line">  <span class="keyword">this</span>.saveAsInput = $(<span class="string">'&lt;input style="display:none;" type="file"  accept=".md" nwsaveas/&gt;'</span>);</span><br><span class="line">  <span class="keyword">this</span>.saveAsInput[<span class="number">0</span>].addEventListener(<span class="string">"change"</span>, <span class="function"><span class="keyword">function</span> <span class="params">(evt)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span>.value)&#123;</span><br><span class="line">      me.filepath = <span class="keyword">this</span>.value;</span><br><span class="line">      me.save();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, <span class="literal">false</span>);</span><br><span class="line">  <span class="keyword">this</span>.saveAsInput.trigger(<span class="string">'click'</span>);</span><br><span class="line"></span><br><span class="line">  hmd.msg(<span class="string">'保存新文件'</span>);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p><code>nw.js</code>的<a href="https://github.com/nwjs/nw.js/wiki/File-dialogs" target="_blank" rel="external">文件对话框</a>比较特殊,可以通过代码触发单击事件来打开对话框,并没有一定要用户点击的限制,作为一个客户端开发框架,这样的改动是必要的.<br>因此我们上面的代码里直接创建了一个<code>input</code>标签,随即触发它的单击事件.其中<code>nwsaveas</code>是指定对话框的类型为另存为对话框.<br>用户输入或者选择好文件后,将filepath设置为用户指定的,并调用me.save()保存文件.</p>
+<h3 id="打开文件">打开文件</h3><p>将实现常用的三种打开文件方式:</p>
+<ol>
+<li>通过打开文件按钮</li>
+<li>拖动文件到编辑器</li>
+<li>双击md文件打开</li>
+</ol>
+<p><strong>通过按钮打开</strong></p>
+<p>通过按钮打开与另存为类似,直接上代码,不用多做解释.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">openFile:<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="keyword">var</span> me = <span class="keyword">this</span>;</span><br><span class="line">  <span class="keyword">this</span>.openFileInput = $(<span class="string">'&lt;input style="display:none;" type="file"  accept=".md"/&gt;'</span>);</span><br><span class="line">  <span class="keyword">this</span>.openFileInput[<span class="number">0</span>].addEventListener(<span class="string">"change"</span>, <span class="function"><span class="keyword">function</span> <span class="params">(evt)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span>.value)&#123;</span><br><span class="line">      me.setFile(<span class="keyword">this</span>.value);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, <span class="literal">false</span>);</span><br><span class="line">  <span class="keyword">this</span>.openFileInput.trigger(<span class="string">'click'</span>);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<p>然后是实现按钮绑定的<code>directive</code><br><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a studio-openfile <span class="variable">href=</span><span class="string">"javascript://"</span> <span class="variable">class=</span><span class="string">"btn btn-primary"</span> <span class="variable">title=</span><span class="string">"打开文件"</span> <span class="variable">ng-click=</span><span class="string">"openTerminal()"</span>&gt;省略..&lt;/a&gt;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">studio.directive(<span class="string">'studioOpenfile'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">($scope, elem)</span> </span>&#123;</span><br><span class="line">    $(elem[<span class="number">0</span>]).on(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">      hmd.editor.openFile();</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><strong>拖动打开</strong><br>到此三个按钮的功能都已实现,但是拖动打开文件是windows上程序的基本功能,因此我们也来实现它.</p>
+<p>这个功能的实现放在编辑器的初始化代码后面,因为要编辑器初始化之后才能打开文件.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">studio.directive(<span class="string">'hmdEditor'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">($scope, elem)</span> </span>&#123;</span><br><span class="line">    hmd.editor.init(&#123;el:elem[<span class="number">0</span>]&#125;);</span><br><span class="line">    hmd.editor.on(<span class="string">'saved'</span>,<span class="function"><span class="keyword">function</span><span class="params">(filepath)</span></span>&#123;</span><br><span class="line">      <span class="keyword">var</span> fileNameArr = filepath.split(<span class="string">'\\'</span>);</span><br><span class="line">      hmd.msg(<span class="string">'文件:'</span> + fileNameArr[fileNameArr.length - <span class="number">1</span>] + <span class="string">'保存成功!'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">//监听拖动事件</span></span><br><span class="line">    <span class="built_in">document</span>.ondrop = <span class="function"><span class="keyword">function</span> <span class="params">(e)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> path, $target = $(e.target), dir, system;</span><br><span class="line">      e.preventDefault();</span><br><span class="line">      <span class="keyword">if</span> (!e.dataTransfer.files.length) <span class="keyword">return</span>;</span><br><span class="line">      <span class="comment">//取到文件路径</span></span><br><span class="line">      path = e.dataTransfer.files[<span class="number">0</span>].path;</span><br><span class="line">      <span class="comment">//非目录,并且包含.md才会在编辑器里打开</span></span><br><span class="line">      <span class="keyword">if</span> (!fs.statSync(path).isDirectory() &amp;&amp; ~path.indexOf(<span class="string">'.md'</span>)) &#123;</span><br><span class="line">        hmd.editor.setFile(path);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>添加了<code>document.ondrop</code>这一段代码,如果拖动的是一个<code>md</code>文件,则打开它</p>
+<p><strong>双击md文件打开</strong></p>
+<p>编写代码之前,我们选随便选中一个<code>md</code>文件,并设置默认用我们的程序打开.<br><img src="http://oneaboveall.qiniudn.com/hx78bbaw2d3d64scor5lml4hd7.png" alt=""><br>然后关闭我们的程序,双击随便一个<code>md</code>文件试试,可以看到双击后我们的程序会启动,但是并不会打开双击的文件,接下来就写代码实现它.</p>
+<p>我们把功能实现也放到editor的init之后.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">studio.directive(<span class="string">'hmdEditor'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">($scope, elem)</span> </span>&#123;</span><br><span class="line">    hmd.editor.init(&#123;el:elem[<span class="number">0</span>]&#125;);</span><br><span class="line">    <span class="comment">//省略部分代码...</span></span><br><span class="line">    <span class="comment">//双击md文件打开</span></span><br><span class="line">    <span class="keyword">var</span> gui = <span class="built_in">require</span>(<span class="string">'nw.gui'</span>),</span><br><span class="line">        filepath = gui.App.argv[<span class="number">0</span>];</span><br><span class="line">	~filepath.indexOf(<span class="string">'.md'</span>) &amp;&amp; hmd.editor.setFile(filepath);</span><br><span class="line">    <span class="comment">//如果程序已经打开,则会触发open事件</span></span><br><span class="line">    gui.App.on(<span class="string">'open'</span>, <span class="function"><span class="keyword">function</span><span class="params">(cmdline)</span> </span>&#123;</span><br><span class="line">    	<span class="built_in">window</span>.focus();</span><br><span class="line">      filepath = cmdline.split(<span class="string">' '</span>)[<span class="number">2</span>].replace(<span class="regexp">/\"/g</span>,<span class="string">''</span>);</span><br><span class="line">      ~filepath.indexOf(<span class="string">'.md'</span>) &amp;&amp; hmd.editor.setFile(filepath);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://github.com/nwjs/nw.js/wiki/Handling-files-and-arguments" target="_blank" rel="external">相关知识</a><br>关掉程序,再次双击md文件,就可以看到打开功能正常了.在软件已启动的状态双击文件也可以打开该文件.</p>
+<h2 id="总结">总结</h2><p>今天实现了文件操作功能,这样我们的编辑器已经可用了.明天将实现<code>系统设置</code>的功能.</p>
+<h2 id="附件">附件</h2><p><a href="http://pan.baidu.com/s/1sjJn3B3" target="_blank" rel="external">本篇程序打包</a><br><a href="https://github.com/benqy/hexomd" target="_blank" rel="external">项目地址</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Hexo-MD/">Hexo MD</a><a href="/tags/nw-js/">nw.js</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="hmj.name/2015/04/23/hexomd-02/" data-title="自己动手制作更好用的markdown编辑器-02 | 骑兵程序员" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/04/21/hexomd-01/"  title="自己动手制作更好用的markdown编辑器-01">
+ <strong>下一篇：</strong><br/> 
+ <span>自己动手制作更好用的markdown编辑器-01
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/04/23/hexomd-02/" data-title="自己动手制作更好用的markdown编辑器-02" data-url="hmj.name/2015/04/23/hexomd-02/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#工具条"><span class="toc-number">1.</span> <span class="toc-text">工具条</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#样式"><span class="toc-number">1.1.</span> <span class="toc-text">样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#工具条截图"><span class="toc-number">1.2.</span> <span class="toc-text">工具条截图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#状态栏消息"><span class="toc-number">2.</span> <span class="toc-text">状态栏消息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件操作"><span class="toc-number">3.</span> <span class="toc-text">文件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#新建文件"><span class="toc-number">3.1.</span> <span class="toc-text">新建文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#保存文件"><span class="toc-number">3.2.</span> <span class="toc-text">保存文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#打开文件"><span class="toc-number">3.3.</span> <span class="toc-text">打开文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#附件"><span class="toc-number">5.</span> <span class="toc-text">附件</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/其他/" title="其他">其他<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/前端/" title="前端">前端<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/工具/" title="工具">工具<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Gungnir/" title="Gungnir">Gungnir<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/nw-js/" title="nw.js">nw.js<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo-MD/" title="Hexo MD">Hexo MD<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/代理/" title="代理">代理<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端/" title="前端">前端<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/github/" title="github">github<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/javascript/" title="javascript">javascript<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/as3/" title="as3">as3<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://github.com/benqy" target="_blank" title="github">github</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://lynzz.github.io" target="_blank" title="lynzz">lynzz</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://github.com/benqy/Gungnir" target="_blank" title="Gungnir">Gungnir</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> zhongwen xie zheli buhao kan. <br/>
+			suibian xiedian bi shang yitiao chang de.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="hmj.name/about" target="_blank" title="骑兵程序员">骑兵程序员</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"benqy"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254809845'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1254809845' type='text/javascript'%3E%3C/script%3E"));</script>
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
