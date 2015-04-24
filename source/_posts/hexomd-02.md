@@ -5,7 +5,7 @@ tags:
 - Hexo MD
 ---
 
-[上一篇](http://hmj.name/2015/04/21/hexomd-01/)我们搭建好了项目结构,简单的实现了第一个模块(studio)的基本功能,已经能够进行简单的markdown编辑.
+[上一篇](http://benq.im/2015/04/21/hexomd-01/)我们搭建好了项目结构,简单的实现了第一个模块(studio)的基本功能,已经能够进行简单的markdown编辑.
 
 在这篇里我们将实现以下功能:
 
@@ -282,9 +282,9 @@ save : function () {
 ```
 [相关知识](https://github.com/nwjs/nw.js/wiki/Handling-files-and-arguments)
 关掉程序,再次双击md文件,就可以看到打开功能正常了.在软件已启动的状态双击文件也可以打开该文件.
-##总结
+## 总结
 今天实现了文件操作功能,这样我们的编辑器已经可用了.明天将实现`系统设置`的功能.
 
-##附件
+## 附件
 [本篇程序打包](http://pan.baidu.com/s/1sjJn3B3)
 [项目地址](https://github.com/benqy/hexomd)
