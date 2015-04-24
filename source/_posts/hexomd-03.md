@@ -253,6 +253,8 @@ button按钮绑定save方法`ng-click="save(systemSetting)"`.
 
 我们的程序又更好用一些了(但是随着界面变多,又更丑了,太为难了).
 
+最终效果截图
+![](http://oneaboveall.qiniudn.com/se5caly0wegyn54b7v03ity6z8.png)
 ## 附件
 [本篇程序打包](http://pan.baidu.com/s/1dD6eN1R)
 [项目地址](https://github.com/benqy/hexomd)
