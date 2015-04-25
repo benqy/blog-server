@@ -1,4 +1,4 @@
-title: "自己动手制作更好用的markdown编辑器-02"
+title: "自己动手开发更好用的markdown编辑器-02"
 date: 2015-04-23 09:28:59
 tags:
 - nw.js
