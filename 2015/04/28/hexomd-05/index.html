@@ -1,0 +1,544 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>自己动手开发更好用的markdown编辑器-05(粘贴上传图片) | 骑兵程序员</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="骑兵程序员">
+    
+
+    
+    <meta name="description" content="上一篇我们实现了实时预览功能.
+今天这篇要利用免费的七牛云存储服务来实现粘贴自动上传图片的功能,涉及到以下三个内容:
+
+七牛云存储.
+clipboard-apis
+ajax文件上传
+
+不想看过程的朋友可以直接下载打包好的程序使用,使用之前记得配置七牛帐号.
+七牛云存储系统设置首先在系统设置里增加七牛空间设置部分,这里就简单的贴上代码,因为系统设置模块之前几篇了都讲过了.
+system/model.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自己动手开发更好用的markdown编辑器-05(粘贴上传图片)">
+<meta property="og:url" content="hmj.name/2015/04/28/hexomd-05/index.html">
+<meta property="og:site_name" content="骑兵程序员">
+<meta property="og:description" content="上一篇我们实现了实时预览功能.
+今天这篇要利用免费的七牛云存储服务来实现粘贴自动上传图片的功能,涉及到以下三个内容:
+
+七牛云存储.
+clipboard-apis
+ajax文件上传
+
+不想看过程的朋友可以直接下载打包好的程序使用,使用之前记得配置七牛帐号.
+七牛云存储系统设置首先在系统设置里增加七牛空间设置部分,这里就简单的贴上代码,因为系统设置模块之前几篇了都讲过了.
+system/model.">
+<meta property="og:image" content="http://7ximoo.com1.z0.glb.clouddn.com/a2dsa5gcztr19hqvlorc9apuv7.png">
+<meta property="og:image" content="http://7ximoo.com1.z0.glb.clouddn.com/z1gu22y4uqnf8iae1m7fygvptx.png">
+<meta property="og:image" content="http://7ximoo.com1.z0.glb.clouddn.com/pby78cgpeaa1c41w4n2d2v5vlh.png">
+<meta property="og:image" content="http://7ximoo.com1.z0.glb.clouddn.com/q2eqjgnuof5ka3x6pygd2h23s1.png">
+<meta property="og:image" content="http://7ximoo.com1.z0.glb.clouddn.com/3iu3kwp04uyaxdnsbp8wo9xsns.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自己动手开发更好用的markdown编辑器-05(粘贴上传图片)">
+<meta name="twitter:description" content="上一篇我们实现了实时预览功能.
+今天这篇要利用免费的七牛云存储服务来实现粘贴自动上传图片的功能,涉及到以下三个内容:
+
+七牛云存储.
+clipboard-apis
+ajax文件上传
+
+不想看过程的朋友可以直接下载打包好的程序使用,使用之前记得配置七牛帐号.
+七牛云存储系统设置首先在系统设置里增加七牛空间设置部分,这里就简单的贴上代码,因为系统设置模块之前几篇了都讲过了.
+system/model.">
+
+    
+    <link rel="alternative" href="/atom.xml" title="骑兵程序员" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="骑兵程序员" title="骑兵程序员"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="骑兵程序员">骑兵程序员</a></h1>
+				<h2 class="blog-motto">写代码是为了退休后可以天天玩dota</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">博客</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:hmj.name">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/04/28/hexomd-05/" title="自己动手开发更好用的markdown编辑器-05(粘贴上传图片)" itemprop="url">自己动手开发更好用的markdown编辑器-05(粘贴上传图片)</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="hmj.name/about" title="骑兵程序员" target="_blank" itemprop="author">骑兵程序员</a>
+		
+  <p class="article-time">
+    <time datetime="2015-04-28T07:13:55.000Z" itemprop="datePublished"> 发表于 2015-04-28</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#七牛云存储"><span class="toc-number">1.</span> <span class="toc-text">七牛云存储</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#系统设置"><span class="toc-number">1.1.</span> <span class="toc-text">系统设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置七牛帐号"><span class="toc-number">1.2.</span> <span class="toc-text">配置七牛帐号</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图片上传"><span class="toc-number">2.</span> <span class="toc-text">图片上传</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#附件"><span class="toc-number">4.</span> <span class="toc-text">附件</span></a></li></ol>
+		
+		</div>
+		
+		<p><a href="http://benq.im/2015/04/25/hexomd-04/" target="_blank" rel="external">上一篇</a>我们实现了<code>实时预览</code>功能.</p>
+<p>今天这篇要利用免费的七牛云存储服务来实现<code>粘贴自动上传图片</code>的功能,涉及到以下三个内容:</p>
+<ol>
+<li><a href="http://www.qiniu.com/" target="_blank" rel="external">七牛云存储</a>.</li>
+<li><a href="http://www.w3.org/TR/clipboard-apis/" target="_blank" rel="external">clipboard-apis</a></li>
+<li>ajax文件上传</li>
+</ol>
+<p>不想看过程的朋友可以直接下载<a href="http://pan.baidu.com/s/1eQtSpwQ" target="_blank" rel="external">打包好的程序</a>使用,使用之前记得<a href="#配置七牛帐号">配置七牛帐号</a>.</p>
+<h2 id="七牛云存储">七牛云存储</h2><h3 id="系统设置">系统设置</h3><p>首先在系统设置里增加<code>七牛空间设置</code>部分,这里就简单的贴上代码,因为系统设置模块之前几篇了都讲过了.</p>
+<p><a href="https://github.com/benqy/hexomd/blob/master/app/modules/system/model.js" target="_blank" rel="external">system/model.js</a><br><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">...</span></span><br><span class="line">  <span class="comment">//默认设置</span></span><br><span class="line">  <span class="built_in">var</span> defaultSystemData <span class="subst">=</span> &#123;</span><br><span class="line">    <span class="comment">//最后一次打开的文件</span></span><br><span class="line">    lastFile: <span class="built_in">null</span>,</span><br><span class="line">    <span class="comment">//编辑器样式</span></span><br><span class="line">    theme:<span class="string">'ambiance'</span>,</span><br><span class="line">    <span class="comment">//预览窗口样式</span></span><br><span class="line">    preViewTheme:<span class="string">'github'</span>,</span><br><span class="line">    <span class="comment">//预览代码块样式</span></span><br><span class="line">    preViewHighLightTheme:<span class="string">'default'</span>,</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/*七牛空间设置*/</span></span><br><span class="line">    accessKey:<span class="string">''</span>,</span><br><span class="line">    secretKey:<span class="string">''</span>,</span><br><span class="line">    <span class="comment">//空间名称</span></span><br><span class="line">    bucketName:<span class="string">'test'</span>,</span><br><span class="line">    <span class="comment">//空间访问地址</span></span><br><span class="line">    bucketHost:<span class="string">'7xit3a.com1.z0.glb.clouddn.com'</span>,</span><br><span class="line">    <span class="comment">//过期时间,从设置之后多少小时过期.</span></span><br><span class="line">    deadline:<span class="number">1000</span></span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure></p>
+<p><a href="">system.html</a><br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">    &lt;div <span class="keyword">class</span>=<span class="string">"form-group"</span>&gt;</span><br><span class="line">      &lt;<span class="keyword">label</span>&gt;AccessKey&lt;/<span class="keyword">label</span>&gt;</span><br><span class="line">      &lt;<span class="keyword">input</span> <span class="keyword">class</span>=<span class="string">"form-control"</span> name=<span class="string">"accessKey"</span> ng-model=<span class="string">"systemSetting.accessKey"</span>/&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div <span class="keyword">class</span>=<span class="string">"form-group"</span>&gt;</span><br><span class="line">      &lt;<span class="keyword">label</span>&gt;SecretKey&lt;/<span class="keyword">label</span>&gt;</span><br><span class="line">      &lt;<span class="keyword">input</span> <span class="keyword">class</span>=<span class="string">"form-control"</span> name=<span class="string">"secretKey"</span> ng-model=<span class="string">"systemSetting.secretKey"</span>  <span class="keyword">type</span>=<span class="string">"text"</span>/&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div <span class="keyword">class</span>=<span class="string">"form-group"</span>&gt;</span><br><span class="line">      &lt;<span class="keyword">label</span>&gt;空间名&lt;/<span class="keyword">label</span>&gt;</span><br><span class="line">      &lt;<span class="keyword">input</span> <span class="keyword">class</span>=<span class="string">"form-control"</span> name=<span class="string">"bucketName"</span> ng-model=<span class="string">"systemSetting.bucketName"</span> <span class="keyword">type</span>=<span class="string">"text"</span>/&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div <span class="keyword">class</span>=<span class="string">"form-group"</span>&gt;</span><br><span class="line">      &lt;<span class="keyword">label</span>&gt;空间域名&lt;/<span class="keyword">label</span>&gt;</span><br><span class="line">      &lt;<span class="keyword">input</span> <span class="keyword">class</span>=<span class="string">"form-control"</span> name=<span class="string">"bucketHost"</span> ng-model=<span class="string">"systemSetting.bucketHost"</span> <span class="keyword">type</span>=<span class="string">"text"</span>/&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    &lt;div <span class="keyword">class</span>=<span class="string">"form-group"</span>&gt;</span><br><span class="line">      &lt;<span class="keyword">label</span>&gt;过期时间&lt;/<span class="keyword">label</span>&gt;</span><br><span class="line">      &lt;<span class="keyword">input</span> name=<span class="string">"deadline"</span> <span class="keyword">class</span>=<span class="string">"form-control"</span> ng-model=<span class="string">"systemSetting.deadline"</span> <span class="keyword">type</span>=<span class="string">"number"</span>/&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>增加了<code>accesskey</code>,<code>secretkey</code>,<code>空间名</code>,<code>过期时间</code>四个用于上传图片的字段. 其中<code>accesskey</code>, <code>secretkey</code>用于验证权限,<code>空间名</code>用于指定上传图片的存储空间,<code>过期时间</code>指定授权的过期时间. 这四个字段共同组成上传授权的<code>Token</code>,生成的方法如下:</p>
+<p>安装七牛nodejs版sdk<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="operator"><span class="keyword">install</span> qiniu <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure></p>
+<p><img src="http://7ximoo.com1.z0.glb.clouddn.com/a2dsa5gcztr19hqvlorc9apuv7.png" alt=""></p>
+<p><a href="https://github.com/benqy/hexomd/blob/master/app/modules/system/model.js" target="_blank" rel="external">system/model.js</a><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  <span class="comment">//生成七牛存储空间token</span></span><br><span class="line">  system.qiniuKeygen = <span class="function"><span class="keyword">function</span><span class="params">(systemSetting)</span></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> qiniu = <span class="built_in">require</span>(<span class="string">'../app/node_modules/qiniu'</span>);</span><br><span class="line">    qiniu.conf.ACCESS_KEY = systemSetting.accessKey;</span><br><span class="line">    qiniu.conf.SECRET_KEY = systemSetting.secretKey;</span><br><span class="line">    <span class="keyword">var</span> putPolicy = <span class="keyword">new</span> qiniu.rs.PutPolicy(systemSetting.bucketName);</span><br><span class="line">    putPolicy.expires = <span class="built_in">Math</span>.round(<span class="keyword">new</span> <span class="built_in">Date</span>().getTime() / <span class="number">1000</span>) + systemSetting.deadline * <span class="number">3600</span>;</span><br><span class="line">    systemSetting.qiniutoken = putPolicy.token();</span><br><span class="line">    <span class="keyword">return</span> systemSetting;</span><br><span class="line">  &#125;;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<h3 id="配置七牛帐号">配置七牛帐号</h3><p>首先得注册一个<a href="http://www.qiniu.com/" target="_blank" rel="external">七牛帐号</a>.</p>
+<p>进入后台,新建一个空间,我这里取的空间名为<code>blog</code>,用于我博客的图片存储.<br><img src="http://7ximoo.com1.z0.glb.clouddn.com/z1gu22y4uqnf8iae1m7fygvptx.png" alt=""></p>
+<p>选择新建的空间,点击<code>空间设置</code>&gt;<code>域名设置</code>,查看自动分配的域名<br><img src="http://7ximoo.com1.z0.glb.clouddn.com/pby78cgpeaa1c41w4n2d2v5vlh.png" alt=""></p>
+<p>回到后台首页,点击<code>账号设置</code>,可以查看<code>accessKey(AK)</code>和<code>SecretKey(SK)</code></p>
+<p><img src="http://7ximoo.com1.z0.glb.clouddn.com/q2eqjgnuof5ka3x6pygd2h23s1.png" alt=""></p>
+<p>在刚做好的后台里配置好这几个字段<br><img src="http://7ximoo.com1.z0.glb.clouddn.com/3iu3kwp04uyaxdnsbp8wo9xsns.png" alt=""><br>我把我空间的密钥遮住了,大家请填上自己的空间密钥</p>
+<h2 id="图片上传">图片上传</h2><p>图片的存储空间准备好了,现在来实现上传的功能.</p>
+<p>初始化editor的时候传入七牛的token<br><a href="https://github.com/benqy/hexomd/blob/master/app/modules/studio/directives.js" target="_blank" rel="external">studio/directive.js</a><br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">studio.directive(<span class="string">'hmdEditor'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">($scope, elem)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> systemData = hmd.system.<span class="keyword">get</span>();</span><br><span class="line">      hmd.editor.init(&#123;</span><br><span class="line">        el:elem[<span class="number">0</span>],</span><br><span class="line">        theme:systemData.theme,</span><br><span class="line">        <span class="comment">//七牛云存储授权</span></span><br><span class="line">        qiniuToken:hmd.system.qiniuKeygen(systemData).qiniutoken,</span><br><span class="line">        <span class="comment">//空间的域名</span></span><br><span class="line">        bucketHost:systemData.bucketHost</span><br><span class="line">      &#125;,systemData.lastFile);</span><br><span class="line">      <span class="comment">//保存最后一次打开的文件</span></span><br><span class="line">      hmd.editor.on(<span class="string">'setFiled'</span>,<span class="function"><span class="keyword">function</span><span class="params">(filepath)</span></span>&#123;</span><br><span class="line">        hmd.system.setLastFile(filepath);</span><br><span class="line">      &#125;);</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p><a href="https://github.com/benqy/hexomd/blob/master/app/modules/studio/editor.js" target="_blank" rel="external">studio/editor</a>里实现图片上传功能</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">initQiniu:<span class="function"><span class="keyword">function</span><span class="params">(options)</span></span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.qiniuToken = options.qiniuToken;</span><br><span class="line">  <span class="keyword">this</span>.bucketHost = options.bucketHost;</span><br><span class="line">  <span class="comment">//监听粘贴事件</span></span><br><span class="line">  $(<span class="string">'.studio-wrap'</span>)[<span class="number">0</span>].onpaste = <span class="keyword">this</span>.uploadImage.bind(<span class="keyword">this</span>);</span><br><span class="line">&#125;,</span><br><span class="line">uploadImage:<span class="function"><span class="keyword">function</span><span class="params">(ev)</span></span>&#123;</span><br><span class="line">  <span class="keyword">var</span> clipboardData, items, item;</span><br><span class="line">  <span class="keyword">if</span>(!<span class="keyword">this</span>.qiniuToken)&#123;</span><br><span class="line">    <span class="keyword">this</span>.fire(<span class="string">'error'</span>,&#123;msg:<span class="string">'未设置七牛密钥,无法上传图片'</span>&#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//如果粘贴的是图片</span></span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (ev &amp;&amp; (clipboardData = ev.clipboardData) &amp;&amp; (items = clipboardData.items) &amp;&amp;</span><br><span class="line">      (item = items[<span class="number">0</span>]) &amp;&amp; item.kind == <span class="string">'file'</span> &amp;&amp; item.type.match(<span class="regexp">/^image\//i</span>)) &#123;</span><br><span class="line">    <span class="comment">//取图片数据</span></span><br><span class="line">    <span class="keyword">var</span> blob = item.getAsFile();</span><br><span class="line">    <span class="comment">//生成随机的图片名</span></span><br><span class="line">    <span class="keyword">var</span> fileName = <span class="keyword">this</span>.guid() + <span class="string">'.'</span> +  blob.type.split(<span class="string">'/'</span>)[<span class="number">1</span>];</span><br><span class="line">    <span class="comment">//上传</span></span><br><span class="line">    <span class="keyword">this</span>._qiniuUpload(blob, <span class="keyword">this</span>.qiniuToken, fileName, <span class="function"><span class="keyword">function</span> <span class="params">(blkRet)</span> </span>&#123;</span><br><span class="line">      <span class="comment">//生成markdown格式的图片地址</span></span><br><span class="line">      <span class="keyword">var</span> img = <span class="string">'![](http://'</span>+<span class="keyword">this</span>.bucketHost+<span class="string">'/'</span> + blkRet.key + <span class="string">')'</span>;</span><br><span class="line">      <span class="comment">//在光标处插入图片</span></span><br><span class="line">      <span class="keyword">this</span>.cm.doc.replaceSelection(img);</span><br><span class="line">    &#125;.bind(<span class="keyword">this</span>));</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line"><span class="comment">//上传图片,参数为:图片2进制内容,七牛token,文件名,回调函数</span></span><br><span class="line">_qiniuUpload:<span class="function"><span class="keyword">function</span> <span class="params">(f, token, key,fn)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">  <span class="comment">//创建表单</span></span><br><span class="line">  xhr.open(<span class="string">'POST'</span>, <span class="string">'http://up.qiniu.com'</span>, <span class="literal">true</span>);</span><br><span class="line">  <span class="keyword">var</span> formData, startDate;</span><br><span class="line">  formData = <span class="keyword">new</span> FormData();</span><br><span class="line">  <span class="keyword">if</span> (key !== <span class="literal">null</span> &amp;&amp; key !== <span class="literal">undefined</span>) formData.append(<span class="string">'key'</span>, key);</span><br><span class="line">  formData.append(<span class="string">'token'</span>, token);</span><br><span class="line">  formData.append(<span class="string">'file'</span>, f);</span><br><span class="line">  <span class="keyword">var</span> taking;</span><br><span class="line">	  </span><br><span class="line">  xhr.onreadystatechange = <span class="function"><span class="keyword">function</span> <span class="params">(response)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//上传成功则执行回调</span></span><br><span class="line">    <span class="keyword">if</span> (xhr.readyState == <span class="number">4</span> &amp;&amp; xhr.status == <span class="number">200</span> &amp;&amp; xhr.responseText) &#123;</span><br><span class="line">      <span class="keyword">var</span> blkRet = <span class="built_in">JSON</span>.parse(xhr.responseText);</span><br><span class="line">      fn(blkRet);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (xhr.status != <span class="number">200</span> &amp;&amp; xhr.responseText) &#123;</span><br><span class="line">      <span class="keyword">if</span>(xhr.status == <span class="number">631</span>)&#123;</span><br><span class="line">        hmd.editor.fire(<span class="string">'error'</span>,&#123;msg:<span class="string">'七牛空间不存在.'</span>&#125;);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span>&#123;</span><br><span class="line">        hmd.editor.fire(<span class="string">'error'</span>,&#123;msg:<span class="string">'七牛设置错误.'</span>&#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  startDate = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</span><br><span class="line">  <span class="comment">//提交数据</span></span><br><span class="line">  xhr.send(formData);</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>至此这个功能就完成了,这个功能较为简单,因此今天篇幅较小.</p>
+<h2 id="总结">总结</h2><p>粘贴上传图片的功能让我不用频繁的停下来上传图片,可以大大的提高用markdown写文章的效率.<br>目前功能还较为简单,不能指定图片名,不能分目录,大家可以根据自己的需求修改代码,完善功能.</p>
+<p>接下来的计划:</p>
+<ol>
+<li>自动更新.</li>
+<li>云同步.</li>
+<li>插件机制</li>
+<li>表情插件.</li>
+</ol>
+<h2 id="附件">附件</h2><p><a href="http://pan.baidu.com/s/1eQtSpwQ" target="_blank" rel="external">本篇程序打包</a>,七牛云存储未设置好,请自行根据<a href="#配置七牛帐号">教程</a>设置.<br><a href="https://github.com/benqy/hexomd" target="_blank" rel="external">项目地址</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Hexo-MD/">Hexo MD</a><a href="/tags/nw-js/">nw.js</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="hmj.name/2015/04/28/hexomd-05/" data-title="自己动手开发更好用的markdown编辑器-05(粘贴上传图片) | 骑兵程序员" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/04/25/hexomd-04/"  title="自己动手开发更好用的markdown编辑器-04">
+ <strong>下一篇：</strong><br/> 
+ <span>自己动手开发更好用的markdown编辑器-04
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/04/28/hexomd-05/" data-title="自己动手开发更好用的markdown编辑器-05(粘贴上传图片)" data-url="hmj.name/2015/04/28/hexomd-05/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#七牛云存储"><span class="toc-number">1.</span> <span class="toc-text">七牛云存储</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#系统设置"><span class="toc-number">1.1.</span> <span class="toc-text">系统设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置七牛帐号"><span class="toc-number">1.2.</span> <span class="toc-text">配置七牛帐号</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图片上传"><span class="toc-number">2.</span> <span class="toc-text">图片上传</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#附件"><span class="toc-number">4.</span> <span class="toc-text">附件</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/其他/" title="其他">其他<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/前端/" title="前端">前端<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/工具/" title="工具">工具<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/nw-js/" title="nw.js">nw.js<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo-MD/" title="Hexo MD">Hexo MD<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Gungnir/" title="Gungnir">Gungnir<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/代理/" title="代理">代理<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端/" title="前端">前端<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/github/" title="github">github<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/javascript/" title="javascript">javascript<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/as3/" title="as3">as3<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://github.com/benqy" target="_blank" title="github">github</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://lynzz.github.io" target="_blank" title="lynzz">lynzz</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://github.com/benqy/Gungnir" target="_blank" title="Gungnir">Gungnir</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> zhongwen xie zheli buhao kan. <br/>
+			suibian xiedian bi shang yitiao chang de.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="hmj.name/about" target="_blank" title="骑兵程序员">骑兵程序员</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"benqy"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254809845'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1254809845' type='text/javascript'%3E%3C/script%3E"));</script>
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
