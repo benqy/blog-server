@@ -1,0 +1,527 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>自己动手开发更好用的markdown编辑器-06(自动更新) | 骑兵程序员</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="骑兵程序员">
+    
+
+    
+    <meta name="description" content="上一篇我们实现了粘贴上传图片功能.
+今天将实现自动更新的功能,有了这个功能以后我再发博客就不需要每次都把最新的程序重新打包上传了.
+对于不想看如何实现的朋友,直接下载打包好的程序就行,以后更新可以点击软件右上角的第一个按钮即可(手动).
+自动更新方案在做上一个软件Gungnir的时候,为了可以显示更新进度,自动更新的方案是列出所有需要更新的文件,然后自动下载每个文件并覆盖,但是在需要更新一些nod">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自己动手开发更好用的markdown编辑器-06(自动更新)">
+<meta property="og:url" content="hmj.name/2015/05/12/hexomd-06/index.html">
+<meta property="og:site_name" content="骑兵程序员">
+<meta property="og:description" content="上一篇我们实现了粘贴上传图片功能.
+今天将实现自动更新的功能,有了这个功能以后我再发博客就不需要每次都把最新的程序重新打包上传了.
+对于不想看如何实现的朋友,直接下载打包好的程序就行,以后更新可以点击软件右上角的第一个按钮即可(手动).
+自动更新方案在做上一个软件Gungnir的时候,为了可以显示更新进度,自动更新的方案是列出所有需要更新的文件,然后自动下载每个文件并覆盖,但是在需要更新一些nod">
+<meta property="og:image" content="http://7ximoo.com1.z0.glb.clouddn.com/bkkjy41nrprmge49xbte3t29y6.png">
+<meta property="og:image" content="http://7ximoo.com1.z0.glb.clouddn.com/4a8nq20f7v1mjqjko7y8qb48ff.png">
+<meta property="og:image" content="http://7ximoo.com1.z0.glb.clouddn.com/fv6a4ol9mtjractcur4ba7drev.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自己动手开发更好用的markdown编辑器-06(自动更新)">
+<meta name="twitter:description" content="上一篇我们实现了粘贴上传图片功能.
+今天将实现自动更新的功能,有了这个功能以后我再发博客就不需要每次都把最新的程序重新打包上传了.
+对于不想看如何实现的朋友,直接下载打包好的程序就行,以后更新可以点击软件右上角的第一个按钮即可(手动).
+自动更新方案在做上一个软件Gungnir的时候,为了可以显示更新进度,自动更新的方案是列出所有需要更新的文件,然后自动下载每个文件并覆盖,但是在需要更新一些nod">
+
+    
+    <link rel="alternative" href="/atom.xml" title="骑兵程序员" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="骑兵程序员" title="骑兵程序员"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="骑兵程序员">骑兵程序员</a></h1>
+				<h2 class="blog-motto">写代码是为了退休后可以天天玩dota</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">博客</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:hmj.name">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/05/12/hexomd-06/" title="自己动手开发更好用的markdown编辑器-06(自动更新)" itemprop="url">自己动手开发更好用的markdown编辑器-06(自动更新)</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="hmj.name/about" title="骑兵程序员" target="_blank" itemprop="author">骑兵程序员</a>
+		
+  <p class="article-time">
+    <time datetime="2015-05-12T07:10:09.000Z" itemprop="datePublished"> 发表于 2015-05-12</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#自动更新方案"><span class="toc-number">1.</span> <span class="toc-text">自动更新方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现"><span class="toc-number">2.</span> <span class="toc-text">实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装依赖模块"><span class="toc-number">2.1.</span> <span class="toc-text">安装依赖模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义package-json"><span class="toc-number">2.2.</span> <span class="toc-text">自定义package.json</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#updater-js"><span class="toc-number">2.3.</span> <span class="toc-text">updater.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#绑定更新按钮"><span class="toc-number">2.4.</span> <span class="toc-text">绑定更新按钮</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#附件"><span class="toc-number">4.</span> <span class="toc-text">附件</span></a></li></ol>
+		
+		</div>
+		
+		<p><a href="http://benq.im/2015/04/28/hexomd-05/" target="_blank" rel="external">上一篇</a>我们实现了<code>粘贴上传图片</code>功能.</p>
+<p>今天将实现<code>自动更新</code>的功能,有了这个功能以后我再发博客就不需要每次都把最新的程序重新打包上传了.</p>
+<p>对于不想看如何实现的朋友,直接下载<a href="http://pan.baidu.com/s/1gdtkr6r" target="_blank" rel="external">打包好的程序</a>就行,以后更新可以点击软件右上角的第一个按钮即可(手动).<br><img src="http://7ximoo.com1.z0.glb.clouddn.com/bkkjy41nrprmge49xbte3t29y6.png" alt=""></p>
+<h2 id="自动更新方案">自动更新方案</h2><p>在做上一个软件<a href="https://github.com/benqy/Gungnir" target="_blank" rel="external">Gungnir</a>的时候,为了可以显示更新进度,自动更新的方案是列出所有需要更新的文件,然后自动下载每个文件并覆盖,但是在需要更新一些node模块(文件一般都很多)时就相当麻烦了,有一个文件传输失败就会导致更新出错.实现起来相当麻烦,而且也并不能带来什么优势.</p>
+<p>所以做这个软件的自动更新的时候,我用了更为简单粗暴的方案:将需要更新的文件打包成zip文件,直接下载并解压覆盖即可.</p>
+<h2 id="实现">实现</h2><p>自动更新作为较单独的功能模块,我把全部代码放在<a href="https://github.com/benqy/hexomd/blob/master/app/modules/updater.js" target="_blank" rel="external">modules/updater.js</a>,这里就不把全部代码贴出来了,需要的自己点链接看,里面有注释. 我只讲一些实现细节.</p>
+<h3 id="安装依赖模块">安装依赖模块</h3><p>首先是安装两个新增了的node模块依赖<code>when</code>和<code>bufferhelper</code>,第一个是<code>promise</code>模块,第二个看名字就知道,无须解释.<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="operator"><span class="keyword">install</span> <span class="keyword">when</span> <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="operator"><span class="keyword">install</span> bufferhelper <span class="comment">--save</span></span></span><br></pre></td></tr></table></figure>
+<p>将<code>7z.exe</code>放到软件根目录备用<br><img src="http://7ximoo.com1.z0.glb.clouddn.com/4a8nq20f7v1mjqjko7y8qb48ff.png" alt=""></p>
+<h3 id="自定义package-json">自定义<a href="https://raw.githubusercontent.com/benqy/hexomd/master/package.json" target="_blank" rel="external">package.json</a></h3><p>增加了updater配置节点,配置最新的版本号<code>version</code>和对应的补丁文件地址<code>package</code>,由于我这个软件功能很少,代码并不多,因此我现在每次更新都是包含之前所有补丁的文件打包,加起来也才1m多,这样实现比较简单,只要下载最新的包即可.<br><figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  <span class="string">"updater"</span>:<span class="tuple">&#123;</span><br><span class="line">    <span class="string">"version"</span>:<span class="string">"0.6.0.1"</span>,</span><br><span class="line">    <span class="string">"package"</span>:<span class="string">"http://7xit5q.com1.z0.glb.clouddn.com/update.zip"</span></span><br><span class="line">  &#125;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="updater-js">updater.js</h3><p><code>updater.js</code>里实现了<code>hmd.updater</code>模块,包含4个方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//配置文件,用于判断是否有新版本</span></span><br><span class="line"><span class="keyword">var</span> packageFile = <span class="string">'https://raw.githubusercontent.com/benqy/hexomd/master/package.json'</span>,</span><br><span class="line"><span class="comment">//当前程序的运行目录</span></span><br><span class="line">execPath = <span class="built_in">require</span>(<span class="string">'path'</span>).dirname(process.execPath),</span><br><span class="line"><span class="comment">//补丁文件存放目录</span></span><br><span class="line">updatePath = execPath + <span class="string">'\\update'</span>,</span><br><span class="line">fs = <span class="built_in">require</span>(<span class="string">'fs'</span>),</span><br><span class="line">util = <span class="built_in">require</span>(<span class="string">'./helpers/util'</span>),</span><br><span class="line">when = <span class="built_in">require</span>(<span class="string">'./node_modules/when'</span>);</span><br><span class="line"><span class="keyword">var</span> checkUpdateTimer;</span><br><span class="line">hmd.updater = &#123;</span><br><span class="line">  <span class="comment">//下载指定url的内容并返回promise对象</span></span><br><span class="line">  get: <span class="function"><span class="keyword">function</span> <span class="params">(url)</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//检查更新</span></span><br><span class="line">  checkUpdate: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">  	...</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//下载补丁包</span></span><br><span class="line">  update:<span class="function"><span class="keyword">function</span><span class="params">(packageUrl)</span></span>&#123;</span><br><span class="line">    ...</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//安装补丁包</span></span><br><span class="line">  install: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">   ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>更新的流程为 : <code>checkUpdate</code>检查是否有更新 &gt; <code>update</code>下载补丁包 &gt; <code>install</code>安装补丁包</p>
+<p><code>get</code>方法里要注意的是下载下来的内容要判断是否经过<code>GZIP</code>压缩,如果是,则要用node自带的<code>zlib</code>解压.<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">req = protocolModule.<span class="keyword">get</span>(urlOpt, <span class="function"><span class="keyword">function</span> <span class="params">(res)</span> </span>&#123;</span><br><span class="line">  <span class="comment">//是否经过gzip压缩</span></span><br><span class="line">  <span class="keyword">var</span> isGzip = !!res.headers[<span class="string">'content-encoding'</span>] &amp;&amp; !!~res.headers[<span class="string">'content-encoding'</span>].indexOf(<span class="string">'gzip'</span>);</span><br><span class="line"> ...</span><br><span class="line">    <span class="keyword">if</span> (isGzip) &#123;</span><br><span class="line">      require(<span class="string">'zlib'</span>).unzip(buffer, <span class="function"><span class="keyword">function</span> <span class="params">(err, buffer)</span> </span>&#123;</span><br><span class="line">        gzipDeferred.resolve(buffer);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      gzipDeferred.resolve(buffer);</span><br><span class="line">    &#125;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">return</span> deferred.promise;</span><br></pre></td></tr></table></figure></p>
+<p><code>checkUpdate</code>方法里先下载线上的<code>package.json</code>文件与本地进行比较,如果版本号不一致,则提示用户更新.如果用户选择更新,则下载package.json到本地,然后调用<code>update</code>方法下载补丁</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">checkUpdate: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">  hmd.msg(<span class="string">'===正在检查更新==='</span>);</span><br><span class="line">  <span class="comment">//超时检查</span></span><br><span class="line">  checkUpdateTimer =setTimeout(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">    hmd.msg(<span class="string">'===更新失败,可能github被墙了==='</span>, hmd.MSG_LEVEL.error);</span><br><span class="line">  &#125;, <span class="number">10000</span>);</span><br><span class="line">  <span class="keyword">var</span> locPackage = require(<span class="string">'nw.gui'</span>).App.manifest;</span><br><span class="line">  <span class="comment">//获取版本信息和更新文件列表</span></span><br><span class="line">  hmd.updater.<span class="keyword">get</span>(packageFile)</span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span> <span class="params">(packageData)</span> </span>&#123;</span><br><span class="line">    clearTimeout(checkUpdateTimer);</span><br><span class="line">    packageData.text = packageData.buffer.toString();</span><br><span class="line">    <span class="keyword">if</span> (!packageData.text) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">var</span> remotePackage = JSON.parse(packageData.text);</span><br><span class="line">    <span class="keyword">if</span> (remotePackage.updater.version != locPackage.updater.version)&#123;</span><br><span class="line">      <span class="keyword">if</span> (confirm(<span class="string">'是否更新到最新版本:'</span> + remotePackage.updater.version)) &#123;</span><br><span class="line">        <span class="comment">//如果update目录不存在则创建</span></span><br><span class="line">        <span class="keyword">if</span> (!fs.existsSync(updatePath)) &#123;</span><br><span class="line">          util.mkdir(updatePath, <span class="literal">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//保存最新的配置文件</span></span><br><span class="line">        fs.writeFileSync(updatePath + <span class="string">'\\package.json'</span>, packageData.buffer);</span><br><span class="line">        <span class="comment">//下载补丁包</span></span><br><span class="line">      	hmd.updater.update(remotePackage.updater.<span class="keyword">package</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      hmd.msg(<span class="string">'当前版本:'</span> + remotePackage.updater.version + <span class="string">',已经是最新版'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>update</code>方法下载补丁包到<code>update</code>目录,然后调用<code>install</code>安装补丁<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">update:<span class="function"><span class="keyword">function</span><span class="params">(packageUrl)</span></span>&#123;</span><br><span class="line">  hmd.msg(<span class="string">'===正在下载更新文件==='</span>, hmd.MSG_LEVEL.warnings);</span><br><span class="line">  hmd.updater.<span class="keyword">get</span>(packageUrl + <span class="string">'?'</span> + <span class="keyword">new</span> Date() * <span class="number">1</span>)</span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span> <span class="params">(data)</span> </span>&#123;</span><br><span class="line">    fs.writeFileSync(updatePath + <span class="string">'\\update.zip'</span>,data.buffer);</span><br><span class="line">    hmd.updater.install();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+<p><code>install</code>将补丁包通过<code>7z.exe</code>解压覆盖到程序目录,然后提示用户重启软件.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">install: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">//移动配置文件</span></span><br><span class="line">  <span class="built_in">require</span>(<span class="string">"child_process"</span>).exec(<span class="string">'xcopy "'</span> + updatePath + <span class="string">'\\package.json" "'</span> + execPath + <span class="string">'\\package.json" /s /e /y'</span>);</span><br><span class="line">  <span class="comment">//解压缩补丁文件</span></span><br><span class="line">  <span class="keyword">var</span> unzip = execPath + <span class="string">'\\7z.exe x '</span>+ updatePath +<span class="string">'\\update.zip -y'</span>;</span><br><span class="line">  <span class="built_in">require</span>(<span class="string">"child_process"</span>).exec(unzip,<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">  hmd.msg(<span class="string">'===更新完成,重启后生效==='</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里我直接用7z.exe,反正也不大,也可以使用一些开源的node压缩模块.</p>
+<h3 id="绑定更新按钮">绑定更新按钮</h3><p>更新模块完成了,现在将功能绑定到按钮上.<br>先在<a href="https://github.com/benqy/hexomd/blob/master/app/modules/directives.js" target="_blank" rel="external">modules/directives</a>增加新的directive<code>hmdUpdate</code><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">'hmd.directives'</span>, [])</span><br><span class="line">.directive(<span class="string">'hmdUpdate'</span>, [<span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">(scope, elem)</span> </span>&#123;</span><br><span class="line">    $(elem[<span class="number">0</span>]).on(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">      hmd.updater.checkUpdate();</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;])</span><br></pre></td></tr></table></figure></p>
+<p>然后将<a href="https://github.com/benqy/hexomd/blob/master/app/index.html" target="_blank" rel="external">index.html</a>上的更新按钮与directive绑定<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a <span class="variable">class=</span><span class="string">"btn rectbtn"</span> <span class="variable">href=</span><span class="string">"javascript://"</span> <span class="variable">title=</span><span class="string">"点击检查更新"</span> hmd-update&gt;...&lt;/a&gt;</span><br></pre></td></tr></table></figure></p>
+<p>别忘了引用<code>updater.js</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"modules/app.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"modules/updater.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"modules/directives.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="总结">总结</h2><p>基本的自动更新的功能比图片上传更为简单,但是今天做的这个功能还有很多细节问题,比如:</p>
+<ol>
+<li>无法自动删除新版本不需要的文件</li>
+<li>以后如果程序大了,更新补丁每次都全量打包会导致更新很慢</li>
+<li>更新后不会自动重启软件.</li>
+<li>更好的方案是自动根据git的提交信息生成更新列表,并且根据版本号管理.</li>
+</ol>
+<p><img src="http://7ximoo.com1.z0.glb.clouddn.com/fv6a4ol9mtjractcur4ba7drev.png" alt=""></p>
+<p>接下来的计划:</p>
+<ol>
+<li>云同步.</li>
+<li>插件机制</li>
+<li>表情插件.</li>
+</ol>
+<h2 id="附件">附件</h2><p><a href="http://pan.baidu.com/s/1gdtkr6r" target="_blank" rel="external">本篇程序打包</a>.<br><a href="https://github.com/benqy/hexomd" target="_blank" rel="external">项目地址</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Hexo-MD/">Hexo MD</a><a href="/tags/nw-js/">nw.js</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="hmj.name/2015/05/12/hexomd-06/" data-title="自己动手开发更好用的markdown编辑器-06(自动更新) | 骑兵程序员" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/04/28/hexomd-05/"  title="自己动手开发更好用的markdown编辑器-05(粘贴上传图片)">
+ <strong>下一篇：</strong><br/> 
+ <span>自己动手开发更好用的markdown编辑器-05(粘贴上传图片)
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/05/12/hexomd-06/" data-title="自己动手开发更好用的markdown编辑器-06(自动更新)" data-url="hmj.name/2015/05/12/hexomd-06/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#自动更新方案"><span class="toc-number">1.</span> <span class="toc-text">自动更新方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现"><span class="toc-number">2.</span> <span class="toc-text">实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装依赖模块"><span class="toc-number">2.1.</span> <span class="toc-text">安装依赖模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义package-json"><span class="toc-number">2.2.</span> <span class="toc-text">自定义package.json</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#updater-js"><span class="toc-number">2.3.</span> <span class="toc-text">updater.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#绑定更新按钮"><span class="toc-number">2.4.</span> <span class="toc-text">绑定更新按钮</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#附件"><span class="toc-number">4.</span> <span class="toc-text">附件</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/其他/" title="其他">其他<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/前端/" title="前端">前端<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/工具/" title="工具">工具<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/nw-js/" title="nw.js">nw.js<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo-MD/" title="Hexo MD">Hexo MD<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Gungnir/" title="Gungnir">Gungnir<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/代理/" title="代理">代理<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端/" title="前端">前端<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/github/" title="github">github<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/javascript/" title="javascript">javascript<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/as3/" title="as3">as3<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://github.com/benqy" target="_blank" title="github">github</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://lynzz.github.io" target="_blank" title="lynzz">lynzz</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://github.com/benqy/Gungnir" target="_blank" title="Gungnir">Gungnir</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> zhongwen xie zheli buhao kan. <br/>
+			suibian xiedian bi shang yitiao chang de.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="hmj.name/about" target="_blank" title="骑兵程序员">骑兵程序员</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"benqy"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254809845'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1254809845' type='text/javascript'%3E%3C/script%3E"));</script>
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
