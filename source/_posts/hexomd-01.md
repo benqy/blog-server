@@ -5,7 +5,7 @@ tags:
 - Hexo MD
 ---
 
-前段时间用hexo重新搭了个人博客，顺便写了个简单的博客搭建[教程](http://hmj.name/2015/04/13/github-hexo-blog/).
+前段时间用hexo重新搭了个人博客，顺便写了个简单的博客搭建[教程](http://benq.im/2015/04/13/github-hexo-blog/).
 
 用[markdown](http://zh.wikipedia.org/zh/Markdown)写起博客流畅很多，但是用了几个markdown编辑器，都没有一个适合自己使用的。于是就想自己动手做一个，当然不是完全从0开始做，语法高亮和markdown解析都用的是开源的项目.
 <!--more-->
