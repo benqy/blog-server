@@ -9,7 +9,7 @@ tags:
 
 在前面的6篇中,我们基本没做什么创造,都只是像玩乐高那样把零件拼接成我们想要的东西.
 今天这篇将对`marked`进行简单扩展, 增加我们的markdown编辑器支持的语法,实现`目录`,`emojis`表情两种新语法.
-下一篇对`codemirror`进行改造,实现我们自定义语法的编辑器高亮显示.
+以及改造`codemirror`,实现我们自定义语法的编辑器高亮显示(这个本来是要放到下一篇,但是刚刚做完后发现内容很短,所以就又合并到这篇里来了).
 
 对于不想看如何实现的朋友,直接下载[v0.6.0.2](http://pan.baidu.com/s/1gdtkr6r),然后点击右上角的更新按钮更新到最新版即可.
 
@@ -193,8 +193,56 @@ InlineLexer.prototype.output = function(src) {
 ```
 完成!这个功能比目录功能更加简单
 
-
 ![](http://7ximoo.com1.z0.glb.clouddn.com/8hds06f22xz5bfofwsv8j6k7ta.png)
+
+## 编辑器语法高亮
+
+这里就不再去fork [codemirror](https://github.com/codemirror/CodeMirror)这个项目了,有兴趣的可以去fork,修改完后提交给官方.
+我们直接简单粗暴的修改[lib/codemirror/mode/markdown/markdown.js](https://github.com/benqy/hexomd/blob/master/app/lib/codemirror/mode/markdown/markdown.js).
+
+增加toc和emoji的正则:
+```javascript
+  ...
+  ,    toc = 'toc'
+  ,    emoji = 'emoji'
+  ..
+  ..
+  var hrRE = /^([*\-=_])(?:\s*\1){2,}\s*$/
+  ,   ulRE = /^[*\-+]\s+/
+  ,   olRE = /^[0-9]+\.\s+/
+  ,   taskListRE = /^\[(x| )\](?=\s)/ // Must follow ulRE or olRE
+  ,   atxHeaderRE = /^#+/
+  ,   tocRE = /\[TOC\]/
+  ,   emojiRE = /^:([A-Za-z0-9_\-\+]+?):/
+  ..
+```
+
+在`blockNormal`方法里为匹配到的标签返回独立的class:
+```
+    ...
+    } else if(match = stream.match(tocRE)){
+      return toc;
+    } else if(match = stream.match(emojiRE)){
+      return emoji;
+    }
+    ...
+```
+这样就搞定了,编辑器会为匹配到的代码加上相应的class
+![](http://7ximoo.com1.z0.glb.clouddn.com/r4af6mn4fhl4n4yq7oumqb3ce4.png)
+![](http://7ximoo.com1.z0.glb.clouddn.com/fhlt1ecew21627h8764oe2ji0y.png)
+有了,class,就可以在样式修改自定义语法的高亮显示了,比如我现在用的样式文件[mdn-like](https://github.com/benqy/hexomd/blob/master/app/lib/codemirror/theme/mdn-like.css)
+打开这个样式文件,加上样式:
+```
+.cm-toc{
+  background:#ccc;
+}
+.cm-emoji{
+  color:#F7A21B;
+}
+```
+现在这些语法在编辑器里有独特的高亮效果了:
+![](http://7ximoo.com1.z0.glb.clouddn.com/jp3qgvvzgubzww1x3r29umfyo8.png)
+
 ## 总结
 
 通过两个自定义语法的实现,我们可以总结出自定义语法的一般步骤:
@@ -204,9 +252,9 @@ InlineLexer.prototype.output = function(src) {
 3. 在`InlineLexer`里处理匹配到的语法.
 
 接下来的计划:
-1. codemirror的自定义语法高亮. 
-2. 导出pdf,html文件.
-3. 美化预览样式.
+
+1. 导出pdf,html文件.
+2. 美化预览样式.
 
 ## 附件
 [v0.6.0.2](http://pan.baidu.com/s/1gdtkr6r)
