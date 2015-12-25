@@ -1,0 +1,519 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Autohotkey常用脚本 | 骑兵程序员</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="骑兵程序员">
+    
+
+    
+    <meta name="description" content="Autohotkey是一个非常强大而简单的脚本工具,用它可以实现很多自动化的小工具,用来提高自己的工作效率.
+分享下自己常用的一些脚本段.
+常用快捷键# : Win (Windows 标识键)
+! : Alt 
+^ : Control 
++ : Shift 
+常用脚本段音量调节定时移除ToolTip,调节音量的脚本需要用到1234RemoveToolTip:SetTimer, RemoveTool">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Autohotkey常用脚本">
+<meta property="og:url" content="hmj.name/2015/12/25/ahk/index.html">
+<meta property="og:site_name" content="骑兵程序员">
+<meta property="og:description" content="Autohotkey是一个非常强大而简单的脚本工具,用它可以实现很多自动化的小工具,用来提高自己的工作效率.
+分享下自己常用的一些脚本段.
+常用快捷键# : Win (Windows 标识键)
+! : Alt 
+^ : Control 
++ : Shift 
+常用脚本段音量调节定时移除ToolTip,调节音量的脚本需要用到1234RemoveToolTip:SetTimer, RemoveTool">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Autohotkey常用脚本">
+<meta name="twitter:description" content="Autohotkey是一个非常强大而简单的脚本工具,用它可以实现很多自动化的小工具,用来提高自己的工作效率.
+分享下自己常用的一些脚本段.
+常用快捷键# : Win (Windows 标识键)
+! : Alt 
+^ : Control 
++ : Shift 
+常用脚本段音量调节定时移除ToolTip,调节音量的脚本需要用到1234RemoveToolTip:SetTimer, RemoveTool">
+
+    
+    <link rel="alternative" href="/atom.xml" title="骑兵程序员" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="骑兵程序员" title="骑兵程序员"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="骑兵程序员">骑兵程序员</a></h1>
+				<h2 class="blog-motto">写代码是为了退休后可以天天玩dota</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">博客</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:hmj.name">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/12/25/ahk/" title="Autohotkey常用脚本" itemprop="url">Autohotkey常用脚本</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="hmj.name/about" title="骑兵程序员" target="_blank" itemprop="author">骑兵程序员</a>
+		
+  <p class="article-time">
+    <time datetime="2015-12-25T03:39:14.000Z" itemprop="datePublished"> 发表于 2015-12-25</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#常用快捷键"><span class="toc-number">1.</span> <span class="toc-text">常用快捷键</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用脚本段"><span class="toc-number">2.</span> <span class="toc-text">常用脚本段</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#音量调节"><span class="toc-number">2.1.</span> <span class="toc-text">音量调节</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CMD"><span class="toc-number">2.2.</span> <span class="toc-text">CMD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#窗口置顶,"><span class="toc-number">2.3.</span> <span class="toc-text">窗口置顶,</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复制文件的完整路径"><span class="toc-number">2.4.</span> <span class="toc-text">复制文件的完整路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#取色"><span class="toc-number">2.5.</span> <span class="toc-text">取色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#窗口隐藏"><span class="toc-number">2.6.</span> <span class="toc-text">窗口隐藏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#显示窗口"><span class="toc-number">2.7.</span> <span class="toc-text">显示窗口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UNICODE"><span class="toc-number">2.8.</span> <span class="toc-text">UNICODE</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<p><a href="http://ahkscript.org/" target="_blank" rel="external">Autohotkey</a>是一个非常强大而简单的脚本工具,用它可以实现很多自动化的小工具,用来提高自己的工作效率.</p>
+<p>分享下自己常用的一些脚本段.</p>
+<h2 id="常用快捷键">常用快捷键</h2><p><code>#</code> : Win (Windows 标识键)</p>
+<p><code>!</code> : Alt </p>
+<p><code>^</code> : Control </p>
+<p><code>+</code> : Shift </p>
+<h2 id="常用脚本段">常用脚本段</h2><h3 id="音量调节">音量调节</h3><p>定时移除ToolTip,调节音量的脚本需要用到<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">RemoveToolTip:</span><br><span class="line">SetTimer, RemoveToolTip, <span class="keyword">Off</span></span><br><span class="line">ToolTip</span><br><span class="line"><span class="keyword">return</span></span><br></pre></td></tr></table></figure></p>
+<p><code>ctrl+alt+鼠标滚轮向下滚动</code> 调小音量<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">^!WheelDown::</span>  </span><br><span class="line">Send &#123;Volume_Down <span class="number">2</span>&#125;</span><br><span class="line">SoundGet, vol_Master, MASTER, VOLUME</span><br><span class="line">ToolTip, 当前音量<span class="var_expand">%vol_Master%</span>。</span><br><span class="line">SetTimer, RemoveToolTip, <span class="number">1000</span></span><br><span class="line"><span class="keyword">return</span></span><br></pre></td></tr></table></figure></p>
+<p><code>ctrl+alt+鼠标滚轮向上滚动</code> 调大音量<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">^!WheelUp::</span>   </span><br><span class="line">Send &#123;Volume_Up <span class="number">2</span>&#125;</span><br><span class="line">SoundGet, vol_Master, MASTER, VOLUME</span><br><span class="line">ToolTip, 当前音量<span class="var_expand">%vol_Master%</span>。</span><br><span class="line">SetTimer, RemoveToolTip, <span class="number">1000</span></span><br><span class="line"><span class="keyword">return</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="CMD">CMD</h3><p>按下<code>Win+T</code>,在当前文件夹打开CMD.</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">#T::</span> </span><br><span class="line">OpenCmdInCurrent()</span><br><span class="line"><span class="keyword">return</span></span><br><span class="line">OpenCmdInCurrent()</span><br><span class="line">&#123;</span><br><span class="line">    WinGetText, full_path, <span class="literal">A</span>  <span class="comment">; This is required to get the full path of the file from the address bar</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">; Split on newline (`n)</span></span><br><span class="line">    StringSplit, word_array, full_path, <span class="escape">`n</span></span><br><span class="line">    full_path = <span class="var_expand">%word_array1%</span>   <span class="comment">; Take the first element from the array</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">; Just in case - remove all carriage returns (`r)</span></span><br><span class="line">    <span class="comment">;;替换错误的地址字符串 "地址:x:\xx"中的地址:</span></span><br><span class="line"><span class="label">    StringReplace, full_path, full_path,地址:</span>, , all  </span><br><span class="line">    StringReplace, full_path, full_path, <span class="escape">`r</span>, , all</span><br><span class="line">    IfInString full_path, \</span><br><span class="line">    &#123;</span><br><span class="line">        Run, cmd /K cd /D <span class="string">"%full_path%"</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        Run, cmd /K cd /D <span class="string">"C:\ "</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="窗口置顶,">窗口置顶,</h3><p>选中窗口,按<code>window+~</code>,该窗口将终保持在其他窗口上面(z-index:max)</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">#`::</span></span><br><span class="line">WinGetActiveTitle, Title</span><br><span class="line">WinSet, AlwaysOnTop, toggle, <span class="var_expand">%Title%</span></span><br><span class="line"><span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+<h3 id="复制文件的完整路径">复制文件的完整路径</h3><p>选中文件,按<code>window+C</code>复制文件的路径</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">#C::</span></span><br><span class="line">send ^c</span><br><span class="line">sleep,<span class="number">200</span></span><br><span class="line"><span class="built_in"><span class="keyword">clipboard</span></span>=<span class="var_expand">%clipboard%</span> </span><br><span class="line"><span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+<h3 id="取色">取色</h3><p>按下<code>window+x</code>取鼠标位置的颜色</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#x::</span><br><span class="line">; 获得鼠标所在坐标，把鼠标的 X 坐标赋值给变量 <span class="variable">mouseX</span> ，同理 <span class="variable">mouseY</span></span><br><span class="line">MouseGetPos, <span class="variable">mouseX</span>, <span class="variable">mouseY</span></span><br><span class="line">; 调用 PixelGetColor 函数，获得鼠标所在坐标的 RGB 值，并赋值给 <span class="built_in">color</span></span><br><span class="line">PixelGetColor, <span class="built_in">color</span>, %<span class="variable">mouseX</span>%, %<span class="variable">mouseY</span>%, RGB</span><br><span class="line"> ; 截取 <span class="built_in">color</span>（第二个 <span class="built_in">color</span>） 右边的 <span class="number">6</span> 个字符，因为获得的值是这样的：#RRGGBB，一般我们只需要 RRGGBB 部分。把截取到的值再赋给 <span class="built_in">color</span>（第一个 <span class="built_in">color</span>）。</span><br><span class="line">StringRight <span class="built_in">color</span>,<span class="built_in">color</span>,<span class="number">6</span></span><br><span class="line">; 把 <span class="built_in">color</span> 的值发送到剪贴板</span><br><span class="line">clipboard = %<span class="built_in">color</span>%</span><br><span class="line"><span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+<h3 id="窗口隐藏">窗口隐藏</h3><p>按下<code>window+h</code>弹出输入框,输入想要隐藏的窗口<code>名称(不必完全匹配,部分即可)</code>,确定后该窗口即隐藏,主要用于隐藏烦人又不能屏蔽的RTX窗口</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">#H::</span></span><br><span class="line">InputBox ,winTitleh,<span class="string">"隐藏窗口"</span>,<span class="string">"输入窗口名称"</span>,,,<span class="number">140</span></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in"><span class="keyword">ErrorLevel</span></span>)&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">	WinHide,<span class="var_expand">%winTitleh%</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+<h3 id="显示窗口">显示窗口</h3><p>主要用于恢复被上一个脚本(<code>window+h</code>)隐藏的窗口,按下<code>window+j</code>,弹出输入框,输入要显示的窗口名称,确定后该窗口显示出来.</p>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">#J::</span></span><br><span class="line">InputBox ,winTitlej,<span class="string">"显示窗口"</span>,<span class="string">"输入窗口名称"</span>,,,<span class="number">140</span></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in"><span class="keyword">ErrorLevel</span></span>)&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">	WinShow,<span class="var_expand">%winTitlej%</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+<h3 id="UNICODE">UNICODE</h3><ol>
+<li>选中<code>\uxxxx</code>格式的字符串,按下<code>ctrl+alt+u</code>,会显示实际的字符,并复制到剪贴板</li>
+</ol>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">^!<span class="keyword">u</span>::</span><br><span class="line">Send, ^c</span><br><span class="line">UniStr = %clipboard%</span><br><span class="line">CnStr = % uxxxx2cn(UniStr)</span><br><span class="line">ToolTip %CnStr%</span><br><span class="line">clipboard = %CnStr%</span><br><span class="line">SetTimer, RemoveToolTip, 3000</span><br><span class="line"><span class="literal">return</span></span><br><span class="line"></span><br><span class="line">uxxxx2cn(s) &#123;</span><br><span class="line">	i := 1</span><br><span class="line">	<span class="keyword">while</span> j := RegExMatch(s, <span class="string">"\\u[A-Fa-f0-9]&#123;1,4&#125;"</span>, <span class="keyword">m</span>, i)</span><br><span class="line">		<span class="keyword">e</span> .= <span class="literal">SubStr</span>(s, i, j-i) Chr(<span class="string">"0x"</span> <span class="literal">SubStr</span>(<span class="keyword">m</span>, 3)), i := j + <span class="literal">StrLen</span>(<span class="keyword">m</span>)</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">e</span> . <span class="literal">SubStr</span>(s, i)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">RemoveToolTip:</span><br><span class="line">SetTimer, RemoveToolTip, Off</span><br><span class="line">ToolTip</span><br><span class="line"><span class="literal">return</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>选中普通字符串,按下<code>ctrl+alt+i</code>,会将该字符串转为<code>\uxxxx</code>,并复制到剪贴板</li>
+</ol>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">^<span class="comment">!i::</span></span><br><span class="line">Send, ^c</span><br><span class="line">UniStr = %clipboard%</span><br><span class="line">CnStr =% HexEscape(UniStr)</span><br><span class="line">clipboard = %CnStr%</span><br><span class="line">Send, ^v</span><br><span class="line"><span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">HexEscape(cnStr) ;</span><br><span class="line">&#123; ; from tmplinshi</span><br><span class="line">    OldFormat := A_FormatInteger</span><br><span class="line">    SetFormat, <span class="type">Integer</span>, Hex</span><br><span class="line">    Loop, Parse, cnStr</span><br><span class="line">        <span class="type">out</span> .= <span class="string">"\u"</span> . SubStr( Asc(A_LoopField), <span class="number">3</span> )</span><br><span class="line">    SetFormat, <span class="type">Integer</span>, %OldFormat%</span><br><span class="line">    <span class="keyword">Return</span> <span class="type">out</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="hmj.name/2015/12/25/ahk/" data-title="Autohotkey常用脚本 | 骑兵程序员" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/10/29/hexomd-introduction/"  title="用nw.js开发markdown编辑器-功能介绍">
+ <strong>下一篇：</strong><br/> 
+ <span>用nw.js开发markdown编辑器-功能介绍
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2015/12/25/ahk/" data-title="Autohotkey常用脚本" data-url="hmj.name/2015/12/25/ahk/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#常用快捷键"><span class="toc-number">1.</span> <span class="toc-text">常用快捷键</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用脚本段"><span class="toc-number">2.</span> <span class="toc-text">常用脚本段</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#音量调节"><span class="toc-number">2.1.</span> <span class="toc-text">音量调节</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CMD"><span class="toc-number">2.2.</span> <span class="toc-text">CMD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#窗口置顶,"><span class="toc-number">2.3.</span> <span class="toc-text">窗口置顶,</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复制文件的完整路径"><span class="toc-number">2.4.</span> <span class="toc-text">复制文件的完整路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#取色"><span class="toc-number">2.5.</span> <span class="toc-text">取色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#窗口隐藏"><span class="toc-number">2.6.</span> <span class="toc-text">窗口隐藏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#显示窗口"><span class="toc-number">2.7.</span> <span class="toc-text">显示窗口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UNICODE"><span class="toc-number">2.8.</span> <span class="toc-text">UNICODE</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/其他/" title="其他">其他<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/前端/" title="前端">前端<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/工具/" title="工具">工具<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/nw-js/" title="nw.js">nw.js<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo-MD/" title="Hexo MD">Hexo MD<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Gungnir/" title="Gungnir">Gungnir<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/代理/" title="代理">代理<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/前端/" title="前端">前端<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/github/" title="github">github<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/hexo/" title="hexo">hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/javascript/" title="javascript">javascript<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/as3/" title="as3">as3<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://github.com/benqy" target="_blank" title="github">github</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://lynzz.github.io" target="_blank" title="lynzz">lynzz</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://github.com/benqy/Gungnir" target="_blank" title="Gungnir">Gungnir</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> zhongwen xie zheli buhao kan. <br/>
+			suibian xiedian bi shang yitiao chang de.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="hmj.name/about" target="_blank" title="骑兵程序员">骑兵程序员</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"benqy"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254809845'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1254809845' type='text/javascript'%3E%3C/script%3E"));</script>
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
