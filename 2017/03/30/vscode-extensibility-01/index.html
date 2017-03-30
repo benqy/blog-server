@@ -4,22 +4,29 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>骑兵程序员</title>
+    <title>vs code插件开发-01(介绍和hello world) | 骑兵程序员</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="骑兵程序员">
     
 
     
-    <meta name="description" content="随笔">
-<meta property="og:type" content="website">
-<meta property="og:title" content="骑兵程序员">
-<meta property="og:url" content="hmj.name/page/2/index.html">
+    <meta name="description" content="为什么选择vscode1
+vscode插件机制介绍2
+helloworld实例3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vs code插件开发-01(介绍和hello world)">
+<meta property="og:url" content="hmj.name/2017/03/30/vscode-extensibility-01/index.html">
 <meta property="og:site_name" content="骑兵程序员">
-<meta property="og:description" content="随笔">
+<meta property="og:description" content="为什么选择vscode1
+vscode插件机制介绍2
+helloworld实例3">
+<meta property="og:updated_time" content="2017-03-30T07:46:46.858Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="骑兵程序员">
-<meta name="twitter:description" content="随笔">
+<meta name="twitter:title" content="vs code插件开发-01(介绍和hello world)">
+<meta name="twitter:description" content="为什么选择vscode1
+vscode插件机制介绍2
+helloworld实例3">
 
     
     <link rel="alternative" href="/atom.xml" title="骑兵程序员" type="application/atom+xml">
@@ -73,101 +80,86 @@
 </div>
     </header>
     <div id="container">
-      <div id="main">
-
+      <div id="main" class="post" itemscope itemprop="blogPost">
   
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2015/04/17/gungnir-01/" title="前端调试工具:Gungnir" itemprop="url">
-  
-    <h1 itemprop="name">前端调试工具:Gungnir</h1>
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
     
-     
-           <p itemprop="description" >搞前端的,特别是负责广告脚本开发的,经常接到需求:”xxx页面广告出不来/xx页面有脚本错误,赶紧帮忙看下”.这时候就得把页面内容下载到本地,打开fiddler,然后配置好代理,再用编辑器打开调试.
-天天遇到这种事情的话,就会觉得fiddler的这些操作还不够简单.而且fiddl</p>
-        
+      <a href="/2017/03/30/vscode-extensibility-01/" title="vs code插件开发-01(介绍和hello world)" itemprop="url">vs code插件开发-01(介绍和hello world)</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="hmj.name/about" title="骑兵程序员" target="_blank" itemprop="author">骑兵程序员</a>
+		
+  <p class="article-time">
+    <time datetime="2017-03-30T03:39:14.000Z" itemprop="datePublished"> 发表于 2017-03-30</time>
     
-    <time datetime="2015-04-17T01:58:32.000Z" itemprop="datePublished">2015-04-17</time>
-  </a>
-</section>
-
-
-
-
-
-
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么选择vscode"><span class="toc-number">1.</span> <span class="toc-text">为什么选择vscode</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vscode插件机制介绍"><span class="toc-number">2.</span> <span class="toc-text">vscode插件机制介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#helloworld实例"><span class="toc-number">3.</span> <span class="toc-text">helloworld实例</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="为什么选择vscode"><a href="#为什么选择vscode" class="headerlink" title="为什么选择vscode"></a>为什么选择vscode</h2><p>1</p>
+<h2 id="vscode插件机制介绍"><a href="#vscode插件机制介绍" class="headerlink" title="vscode插件机制介绍"></a>vscode插件机制介绍</h2><p>2</p>
+<h2 id="helloworld实例"><a href="#helloworld实例" class="headerlink" title="helloworld实例"></a>helloworld实例</h2><p>3</p>
   
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2015/04/13/github-hexo-blog/" title="使用hexo在github上搭建个人博客" itemprop="url">
-  
-    <h1 itemprop="name">使用hexo在github上搭建个人博客</h1>
-    
-     
-           <p itemprop="description" >此教程适合我这种虽然在用github,却不懂git命令的文盲.
-建立博客源码仓库首先在github上创建一个空的仓库用来存放博客程序.
-安装github windows客户端https://windows.github.com/. 注意github客户端是在线安装,如果安装不成功</p>
-        
-    
-    <time datetime="2015-04-13T10:35:31.000Z" itemprop="datePublished">2015-04-13</time>
-  </a>
-</section>
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
 
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2015/04/13/as3-javascript/" title="javascript与as3交互" itemprop="url">
-  
-    <h1 itemprop="name">javascript与as3交互</h1>
-    
-     
-           <p itemprop="description" >由于公司的广告业务需要涉及到flash,因此稍微学习了一下,把一些重要的记录下来
-这篇主要讲讲js和as3之间如何交互,如何实现简单的类似事件的机制.
-模拟事件在as3中,无论是调用js的方法,还是暴露接口给js,都是用ExternalInterface这个api.暴露接口:Ex</p>
-        
-    
-    <time datetime="2015-04-13T10:08:50.000Z" itemprop="datePublished">2015-04-13</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2015/04/13/ie-proxy-setting/" title="使用程序修改系统(IE)代理设置" itemprop="url">
-  
-    <h1 itemprop="name">使用程序修改系统(IE)代理设置</h1>
-    
-     
-           <p itemprop="description" >这是本人在做的一个前端开发调试工具(HttpMock),功能是web服务器+http日记+http代理(类似fiddler),其中的代理功能,需要在web服务启动时,自动去设置各浏览器的代理设置.
-我原先是通过写注册表的方式去实现,实现方法很简单,写一个注册表文件,启动的时候自动</p>
-        
-    
-    <time datetime="2015-04-13T09:41:01.000Z" itemprop="datePublished">2015-04-13</time>
-  </a>
-</section>
-
-
-
-
-
-
-
-  <nav id="page-nav" class="clearfix unexpand">
-    <a class="extend prev" rel="prev" href="/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
 
 </div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="hmj.name/2017/03/30/vscode-extensibility-01/" data-title="vs code插件开发-01(介绍和hello world) | 骑兵程序员" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/12/25/ahk/"  title="Autohotkey常用脚本">
+ <strong>下一篇：</strong><br/> 
+ <span>Autohotkey常用脚本
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2017/03/30/vscode-extensibility-01/" data-title="vs code插件开发-01(介绍和hello world)" data-url="hmj.name/2017/03/30/vscode-extensibility-01/"></div>
+</section>
+
+
+</div>  
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么选择vscode"><span class="toc-number">1.</span> <span class="toc-text">为什么选择vscode</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vscode插件机制介绍"><span class="toc-number">2.</span> <span class="toc-text">vscode插件机制介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#helloworld实例"><span class="toc-number">3.</span> <span class="toc-text">helloworld实例</span></a></li></ol>
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
@@ -350,12 +342,69 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#nothing"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
 
 
 
@@ -430,4 +479,4 @@ $(document).ready(function(){
 <!-- Tiny_search End -->
 
   </body>
- </html>
+</html>
